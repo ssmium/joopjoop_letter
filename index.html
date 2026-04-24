@@ -918,6 +918,72 @@
       color: var(--ink);
     }
 
+
+    /* ============ PUBLISH LETTER ============ */
+    .publish-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 14px 0 18px;
+    }
+
+    .publish-summary .stat-mini {
+      padding: 12px;
+      border-radius: 14px;
+      background: var(--gray-50);
+      border: 1px solid var(--line);
+    }
+
+    .publish-summary .stat-mini b {
+      display: block;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.04em;
+    }
+
+    .publish-summary .stat-mini span {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gray-500);
+    }
+
+    .draft-box {
+      width: 100%;
+      min-height: 360px;
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      outline: 0;
+      resize: vertical;
+      background: var(--gray-50);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 14px;
+      line-height: 1.7;
+      font-weight: 500;
+      white-space: pre-wrap;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .modal-actions .action-btn {
+      min-height: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .publish-summary {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ============ RESPONSIVE ============ */
     @media (max-width: 860px) {
       .main-grid {
@@ -972,6 +1038,7 @@
       </div>
       <div class="top-actions">
         <button class="ghost-btn" id="refreshBtn" title="새로고침">↻ 새 글</button>
+        <button class="ghost-btn" id="publishBtn">레터 발행</button>
         <button class="ghost-btn" id="resetBtn">초기화</button>
       </div>
     </header>
@@ -1024,6 +1091,16 @@
           </div>
           <div class="panel-body">
             <div class="mini-list" id="keywordPanel"></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h3>저장 글감 발행</h3>
+            <p>저장한 카드만 모아 블로그/브런치 초안으로 만들기</p>
+          </div>
+          <div class="panel-body">
+            <button class="action-btn yellow" id="publishSideBtn" style="width:100%; min-height:44px;">저장한 글감으로 레터 만들기</button>
           </div>
         </section>
       </aside>
@@ -1098,6 +1175,8 @@
     const closeModal = document.getElementById('closeModal');
     const resetBtn = document.getElementById('resetBtn');
     const refreshBtn = document.getElementById('refreshBtn');
+    const publishBtn = document.getElementById('publishBtn');
+    const publishSideBtn = document.getElementById('publishSideBtn');
 
     // ============ 백엔드 연결 (자동수집) ============
     function isBackendReady() {
@@ -1472,6 +1551,129 @@
       modalBackdrop.classList.add('show');
     }
 
+    function getSavedLettersForPublish() {
+      return letters
+        .filter(item => item.saved)
+        .sort((a, b) => {
+          const year = new Date().getFullYear();
+          const da = new Date(`${year}/${String(a.date || '').replace('.', '/')}`);
+          const db = new Date(`${year}/${String(b.date || '').replace('.', '/')}`);
+          return db - da;
+        });
+    }
+
+    function buildPublishDraft(savedItems) {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      const dateLabel = `${yyyy}.${mm}.${dd}`;
+      const topKeywords = [...new Set(savedItems.flatMap(item => item.keywords || []))].slice(0, 8);
+
+      const lines = [];
+      lines.push(`트렌드 줍줍레터 #${dateLabel}`);
+      lines.push('');
+      lines.push('요즘 보이는 밈, 콘텐츠, 브랜드 말투, 라이프스타일 흐름 중에서 다시 볼 만한 글감만 모았습니다.');
+      lines.push('');
+      lines.push('오늘의 줍줍 요약');
+      lines.push(`- 저장한 글감: ${savedItems.length}개`);
+      if (topKeywords.length) lines.push(`- 핵심 키워드: ${topKeywords.map(keyword => `#${keyword}`).join(' ')}`);
+      lines.push('');
+      lines.push('---');
+      lines.push('');
+
+      savedItems.forEach((item, index) => {
+        const category = categoryMap[item.category]?.label || '트렌드';
+        const keywords = (item.keywords || []).map(keyword => `#${keyword}`).join(' ');
+        lines.push(`${index + 1}. ${item.title}`);
+        lines.push(`분류: ${category}${item.source ? ` · 출처: ${item.source}` : ''}`);
+        if (keywords) lines.push(`키워드: ${keywords}`);
+        lines.push('');
+        lines.push(`요약: ${item.summary || '원문에서 자세한 내용을 확인해 주세요.'}`);
+        if (item.insight) {
+          lines.push(`줍줍 포인트: ${item.insight}`);
+        } else {
+          lines.push('줍줍 포인트: 이 흐름이 왜 지금 반응을 얻는지, 내 콘텐츠나 업무에 어떻게 연결할 수 있을지 확인해볼 만합니다.');
+        }
+        if (item.link) lines.push(`원문: ${item.link}`);
+        lines.push('');
+        lines.push('---');
+        lines.push('');
+      });
+
+      lines.push('발행 전 체크');
+      lines.push('- 원문 제목과 링크가 정확한지 확인하기');
+      lines.push('- 이미지나 짤은 무단 사용하지 않고 직접 만든 카드/텍스트로 대체하기');
+      lines.push('- 내 관점 한 문단을 추가해서 단순 링크 모음처럼 보이지 않게 정리하기');
+      return lines.join('\n');
+    }
+
+    function openPublishModal() {
+      const savedItems = getSavedLettersForPublish();
+      if (!savedItems.length) {
+        currentView = 'saved';
+        viewSelect.value = 'saved';
+        syncMobileNav();
+        renderAll();
+        showToast('저장한 글감이 아직 없어요 ☆');
+        return;
+      }
+
+      const draft = buildPublishDraft(savedItems);
+      const topKeywords = [...new Set(savedItems.flatMap(item => item.keywords || []))].slice(0, 8);
+      modalContent.innerHTML = `
+        <div class="meta-line">
+          <span class="badge saved">★ 저장 글감</span>
+          <span class="badge new">발행 초안</span>
+        </div>
+        <h2>저장한 글감으로 레터 만들기</h2>
+        <p class="lead">저장한 카드만 모아서 블로그/브런치에 바로 다듬어 올릴 수 있는 초안으로 묶었어요.</p>
+
+        <div class="publish-summary">
+          <div class="stat-mini"><b>${savedItems.length}</b><span>저장한 글감</span></div>
+          <div class="stat-mini"><b>${topKeywords.length}</b><span>핵심 키워드</span></div>
+          <div class="stat-mini"><b>${savedItems.filter(item => item.link).length}</b><span>원문 링크</span></div>
+        </div>
+
+        <textarea class="draft-box" id="publishDraftBox">${escapeHtml(draft)}</textarea>
+        <div class="modal-actions">
+          <button class="action-btn dark" id="copyPublishDraftBtn">초안 복사</button>
+          <button class="action-btn yellow" id="downloadPublishDraftBtn">TXT 저장</button>
+          <button class="action-btn" id="showSavedOnlyBtn">저장 글감만 보기</button>
+        </div>
+      `;
+      modalBackdrop.classList.add('show');
+
+      document.getElementById('copyPublishDraftBtn').addEventListener('click', () => {
+        const text = document.getElementById('publishDraftBox').value;
+        navigator.clipboard.writeText(text)
+          .then(() => showToast('레터 초안을 복사했어요 ✓'))
+          .catch(() => showToast('복사가 막혔어요. 직접 선택해서 복사해주세요.'));
+      });
+
+      document.getElementById('downloadPublishDraftBtn').addEventListener('click', () => {
+        const text = document.getElementById('publishDraftBox').value;
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'trend-joopjoop-letter-draft.txt';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        showToast('TXT 파일로 저장했어요');
+      });
+
+      document.getElementById('showSavedOnlyBtn').addEventListener('click', () => {
+        closeModalView();
+        currentView = 'saved';
+        viewSelect.value = 'saved';
+        syncMobileNav();
+        renderAll();
+      });
+    }
+
     function closeModalView() {
       modalBackdrop.classList.remove('show');
     }
@@ -1578,6 +1780,8 @@
     }, { passive: true });
 
     refreshBtn.addEventListener('click', fetchBackendRefresh);
+    publishBtn.addEventListener('click', openPublishModal);
+    publishSideBtn.addEventListener('click', openPublishModal);
 
     renderAll();
 
