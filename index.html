@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>트렌드 줍줍레터</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    :root {
+      --yellow: #FFE812;
+      --yellow-soft: #FFF4A3;
+      --yellow-pale: #FFFBE0;
+      --ink: #111111;
+      --ink-soft: #2a2a2a;
+      --gray-900: #1a1a1a;
+      --gray-700: #4a4a4a;
+      --gray-500: #8a8a8a;
+      --gray-300: #d4d4d4;
+      --gray-100: #f3f3f3;
+      --gray-50: #fafafa;
+      --paper: #ffffff;
+      --bg: #f7f7f5;
+      --line: #ececec;
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+      --shadow-hover: 0 4px 8px rgba(0,0,0,0.04), 0 16px 40px rgba(0,0,0,0.08);
+      --shadow-pill: 0 2px 6px rgba(0,0,0,0.06);
+      --radius-pill: 999px;
+      --radius-card: 20px;
+      --radius-btn: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, textarea, select {
+      font-family: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      background: none;
+      color: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app {
+      width: min(960px, 100%);
+      margin: 0 auto;
+      padding: 0 16px 110px;
+    }
+
+    /* ============ HEADER ============ */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0 14px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      background: var(--yellow);
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--ink);
+      border-radius: 50%;
+      bottom: 4px;
+      right: 4px;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-500);
+      letter-spacing: 0.02em;
+      margin-top: 1px;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .ghost-btn {
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: var(--radius-pill);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--gray-700);
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.15s;
+    }
+
+    .ghost-btn:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      padding: 32px 4px 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px 6px 8px;
+      background: var(--ink);
+      color: var(--yellow);
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--yellow);
+      border-radius: 50%;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .hero h1 .highlight {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+
+    .hero h1 .highlight::before {
+      content: "";
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      bottom: 4px;
+      height: 38%;
+      background: var(--yellow);
+      z-index: -1;
+      border-radius: 4px;
+    }
+
+    .hero p.lead {
+      max-width: 540px;
+      margin-top: 18px;
+      color: var(--gray-700);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.65;
+    }
+
+    /* ============ STATS ============ */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      padding: 16px 14px;
+      border-radius: var(--radius-card);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      transition: 0.2s;
+    }
+
+    .stat:hover {
+      border-color: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .stat b {
+      display: block;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: var(--ink);
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 2px;
+      color: var(--gray-500);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    /* ============ TOOLBAR ============ */
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+    }
+
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 18px;
+      border-radius: var(--radius-pill);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      transition: 0.2s;
+    }
+
+    .search-wrap:focus-within {
+      border-color: var(--ink);
+    }
+
+    .search-wrap span {
+      font-size: 16px;
+      color: var(--gray-500);
+    }
+
+    .search-wrap input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .search-wrap input::placeholder {
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .view-select {
+      min-width: 130px;
+      min-height: 50px;
+      padding: 0 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--line);
+      outline: 0;
+      background: var(--paper) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") no-repeat right 18px center;
+      background-size: 12px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      appearance: none;
+    }
+
+    /* ============ TABS ============ */
+    .tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 4px 0 16px;
+      scrollbar-width: none;
+    }
+
+    .tabs::-webkit-scrollbar { display: none; }
+
+    .tab {
+      flex: 0 0 auto;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: var(--radius-pill);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--gray-700);
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tab:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .tab.active {
+      background: var(--ink);
+      color: var(--yellow);
+      border-color: var(--ink);
+    }
+
+    /* ============ MAIN GRID ============ */
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+      margin: 4px 4px 14px;
+    }
+
+    .section-title h2 {
+      font-size: 20px;
+      letter-spacing: -0.05em;
+      font-weight: 900;
+    }
+
+    .section-title p {
+      color: var(--gray-500);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* ============ CARDS ============ */
+    .letter-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .letter-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-card);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .letter-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--gray-300);
+    }
+
+    .letter-card.read {
+      opacity: 0.62;
+    }
+
+    .letter-card.read:hover {
+      opacity: 1;
+    }
+
+    .card-inner {
+      padding: 22px;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .meta-line {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      min-height: 24px;
+      padding: 0 9px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .badge.cat {
+      background: var(--gray-100);
+      color: var(--gray-900);
+    }
+
+    .badge.cat-meme { background: #FFF4A3; color: #5a4400; }
+    .badge.cat-content { background: #E0F0FF; color: #1d4f8b; }
+    .badge.cat-brand { background: #FFE0E8; color: #8a2945; }
+    .badge.cat-lifestyle { background: #DEF2DA; color: #2f5a26; }
+    .badge.cat-hr { background: #E8DFF7; color: #4a2e8c; }
+
+    .badge.new {
+      background: var(--ink);
+      color: var(--yellow);
+    }
+
+    .badge.saved {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    .badge.readed {
+      background: transparent;
+      color: var(--gray-500);
+      border: 1px solid var(--line);
+    }
+
+    .badge.date {
+      background: transparent;
+      color: var(--gray-500);
+      padding-left: 4px;
+    }
+
+    .letter-title {
+      font-size: 21px;
+      line-height: 1.3;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+      margin-bottom: 8px;
+      word-break: keep-all;
+      color: var(--ink);
+    }
+
+    .letter-summary {
+      color: var(--gray-700);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .score {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .score small {
+      display: block;
+      font-size: 8px;
+      font-weight: 800;
+      margin-top: 3px;
+      letter-spacing: 0.04em;
+      opacity: 0.7;
+    }
+
+    .keyword-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 14px 0 14px;
+    }
+
+    .keyword {
+      padding: 4px 9px;
+      border-radius: 7px;
+      background: var(--gray-50);
+      color: var(--gray-700);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .insight-box {
+      position: relative;
+      padding: 14px 14px 14px 40px;
+      border-radius: 14px;
+      background: var(--yellow-pale);
+      color: var(--gray-900);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+    }
+
+    .insight-box::before {
+      content: "💡";
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      font-size: 16px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      min-height: 36px;
+      padding: 0 12px;
+      border-radius: var(--radius-btn);
+      background: var(--gray-100);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      transition: 0.15s;
+    }
+
+    .action-btn:hover {
+      background: var(--gray-300);
+    }
+
+    .action-btn.dark {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .action-btn.dark:hover {
+      background: var(--gray-900);
+    }
+
+    .action-btn.yellow {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    .action-btn.yellow:hover {
+      background: #ffd900;
+    }
+
+    /* ============ SIDE PANEL ============ */
+    .side {
+      position: sticky;
+      top: 92px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .panel {
+      border-radius: var(--radius-card);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .panel.dark {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .panel-header {
+      padding: 18px 18px 8px;
+    }
+
+    .panel.dark .panel-header h3 {
+      color: var(--yellow);
+    }
+
+    .panel-header h3 {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .panel-header p {
+      margin-top: 3px;
+      color: var(--gray-500);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .panel.dark .panel-header p {
+      color: var(--gray-500);
+    }
+
+    .panel-body {
+      padding: 0 18px 18px;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mini-item {
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--gray-50);
+      transition: 0.15s;
+      cursor: default;
+    }
+
+    .panel.dark .mini-item {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .mini-item:hover {
+      background: var(--yellow-pale);
+    }
+
+    .panel.dark .mini-item:hover {
+      background: rgba(255, 232, 18, 0.12);
+    }
+
+    .mini-item b {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 2px;
+    }
+
+    .mini-item span {
+      color: var(--gray-500);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .panel.dark .mini-item span {
+      color: var(--gray-500);
+    }
+
+    /* ============ EMPTY STATE ============ */
+    .empty {
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: var(--radius-card);
+      background: var(--paper);
+      border: 1px dashed var(--gray-300);
+    }
+
+    .empty .icon {
+      display: inline-grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      background: var(--yellow);
+      border-radius: 18px;
+      font-size: 26px;
+      margin-bottom: 14px;
+    }
+
+    .empty h3 {
+      font-size: 17px;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    .empty p {
+      color: var(--gray-500);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* ============ MODAL ============ */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal {
+      width: min(720px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      border-radius: 24px;
+      background: var(--paper);
+      animation: slideUp 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-top {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-top b {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0;
+      color: var(--gray-700);
+    }
+
+    .close-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      background: var(--gray-100);
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      transition: 0.15s;
+    }
+
+    .close-btn:hover {
+      background: var(--gray-300);
+    }
+
+    .modal-content {
+      padding: 24px;
+    }
+
+    .modal-content h2 {
+      font-size: 28px;
+      line-height: 1.22;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+      margin: 14px 0 12px;
+    }
+
+    .modal-content .lead {
+      color: var(--gray-700);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+
+    .article-section {
+      padding: 18px;
+      border-radius: 16px;
+      background: var(--gray-50);
+      margin-top: 12px;
+    }
+
+    .article-section h4 {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .article-section h4::before {
+      content: "";
+      width: 14px;
+      height: 3px;
+      background: var(--yellow);
+      border-radius: 2px;
+    }
+
+    .article-section p,
+    .article-section li {
+      color: var(--gray-700);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.65;
+    }
+
+    .article-section ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+    }
+
+    /* ============ TOAST ============ */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 90px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 200;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      background: var(--ink);
+      color: var(--yellow);
+      font-size: 13px;
+      font-weight: 800;
+      transition: 0.22s ease;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ============ MOBILE BOTTOM NAV ============ */
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      z-index: 40;
+      transform: translateX(-50%);
+      display: none;
+      width: min(420px, calc(100% - 26px));
+      padding: 6px;
+      border-radius: 22px;
+      background: var(--ink);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+    }
+
+    .bottom-nav button {
+      flex: 1;
+      min-height: 42px;
+      border-radius: 16px;
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
+      font-weight: 800;
+      transition: 0.15s;
+    }
+
+    .bottom-nav button.active {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 860px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .view-select {
+        display: none;
+      }
+
+      .card-inner {
+        padding: 18px;
+      }
+
+      .letter-title {
+        font-size: 18px;
+      }
+
+      .modal-content h2 {
+        font-size: 22px;
+      }
+
+      .bottom-nav {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">줍</div>
+        <div class="brand-text">
+          <strong>줍줍레터</strong>
+          <span>TREND PICKED DAILY</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="ghost-btn" id="refreshBtn" title="새로고침">↻ 새 글</button>
+        <button class="ghost-btn" id="resetBtn">초기화</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">LIVE · 오늘의 트렌드 줍줍 중</div>
+      <h1>
+        오늘도<br>
+        <span class="highlight">트렌드</span>를 줍줍.
+      </h1>
+      <p class="lead">
+        밈, 숏폼, 브랜드 말투, 라이프스타일, HR 콘텐츠까지.<br>
+        쓸 만한 트렌드만 모아두는 가벼운 보드.
+      </p>
+
+      <div class="stats" id="statsArea"></div>
+    </section>
+
+    <div class="toolbar">
+      <label class="search-wrap">
+        <span>🔎</span>
+        <input id="searchInput" type="search" placeholder="키워드, 카테고리, 글감 검색" />
+      </label>
+      <select class="view-select" id="viewSelect" aria-label="보기 필터">
+        <option value="all">전체 보기</option>
+        <option value="new">신규만</option>
+        <option value="saved">저장한 것</option>
+        <option value="unread">안 읽은 것</option>
+      </select>
+    </div>
+
+    <nav class="tabs" id="tabsArea" aria-label="카테고리"></nav>
+
+    <main class="main-grid">
+      <section>
+        <div class="section-title">
+          <div>
+            <h2 id="sectionHeading">이번 주 줍줍</h2>
+            <p id="sectionSub">요즘 흐름을 카드로 모아봤어요.</p>
+          </div>
+        </div>
+        <div class="letter-list" id="letterList"></div>
+      </section>
+
+      <aside class="side">
+        <section class="panel dark">
+          <div class="panel-header">
+            <h3>이번 주 관찰 키워드</h3>
+            <p>레터로 확장하기 좋은 핵심 인사이트</p>
+          </div>
+          <div class="panel-body">
+            <div class="mini-list" id="keywordPanel"></div>
+          </div>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <nav class="bottom-nav" aria-label="모바일 메뉴">
+    <button class="active" data-mobile-filter="all">전체</button>
+    <button data-mobile-filter="new">신규</button>
+    <button data-mobile-filter="saved">저장</button>
+    <button data-mobile-filter="unread">안읽음</button>
+  </nav>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+    <article class="modal">
+      <div class="modal-top">
+        <b>줍줍 상세</b>
+        <button class="close-btn" id="closeModal" aria-label="닫기">×</button>
+      </div>
+      <div class="modal-content" id="modalContent"></div>
+    </article>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const STORAGE_KEY = 'trend_joopjoop_letter_v3';
+    const API_ENDPOINT = "https://script.google.com/macros/s/AKfycby_z4leYWIoarsZ0v-_2Q1XRZJvx0FzAdAMbqNRsqnpSJpye-cF9X8zpt8ZWt7wInVA/exec";
+
+    const categoryMap = {
+      all: { label: '전체', icon: '🧺' },
+      meme: { label: '밈', icon: '😂' },
+      content: { label: '콘텐츠', icon: '🎬' },
+      brand: { label: '브랜드', icon: '🛍️' },
+      lifestyle: { label: '라이프', icon: '🌿' },
+      hr: { label: 'HR', icon: '💼' }
+    };
+
+    const categoryClass = {
+      meme: 'cat-meme',
+      content: 'cat-content',
+      brand: 'cat-brand',
+      lifestyle: 'cat-lifestyle',
+      hr: 'cat-hr'
+    };
+
+    const defaultLetters = [
+      {
+        id: crypto.randomUUID(),
+        title: '요즘 밈은 웃기기보다 "같이 아는 척"하는 언어가 됐다',
+        category: 'meme',
+        date: '04.24',
+        score: 92,
+        summary: '밈은 단순한 유행어가 아니라 같은 맥락을 공유한다는 신호로 쓰이고 있어요. 브랜드 계정은 과한 패러디보다 톤만 가볍게 빌리는 방식이 안전합니다.',
+        keywords: ['밈', '공감언어', 'SNS말투', '브랜드톤'],
+        insight: '회사 콘텐츠에서는 밈을 그대로 따라 하기보다 "딱딱한 정보를 덜 딱딱하게 말하는 방식"으로 활용하는 게 좋아요.',
+        usage: [
+          '공지 제목을 너무 가볍게 만들기보다 본문 도입부에만 부드럽게 적용하기',
+          '채용 콘텐츠에서는 지원자 공감 상황을 짧은 대화체로 풀기',
+          '밈 원본 이미지나 짤은 무단 사용하지 않고 직접 만든 텍스트 카드로 대체하기'
+        ],
+        saved: false,
+        read: false,
+        isNew: true
+      },
+      {
+        id: crypto.randomUUID(),
+        title: '숏폼에서 잘 먹히는 포맷은 "정보 + 감정 한 방울"이다',
+        category: 'content',
+        date: '04.24',
+        score: 88,
+        summary: '요즘 짧은 콘텐츠는 정보만 주면 저장은 되지만 공유가 약하고, 감정만 있으면 금방 잊혀요. 둘을 섞은 포맷이 반응을 만듭니다.',
+        keywords: ['숏폼', '릴스', '정보성콘텐츠', '감정후킹'],
+        insight: '블로그 글도 첫 문단에 "왜 이걸 봐야 하는지" 감정적 이유를 넣으면 체류 시간이 좋아집니다.',
+        usage: [
+          '첫 문장에 "요즘 이거 모르면 좀 뒤처진 느낌 나죠"처럼 문제 상황 제시',
+          '중간에는 3줄 요약, 마지막에는 실무 활용법 배치',
+          '카드뉴스로 전환하기 쉽게 소제목을 짧게 구성하기'
+        ],
+        saved: true,
+        read: false,
+        isNew: true
+      },
+      {
+        id: crypto.randomUUID(),
+        title: '브랜드 말투가 점점 "친구 같은 안내자" 쪽으로 간다',
+        category: 'brand',
+        date: '04.23',
+        score: 84,
+        summary: '요즘 브랜드는 권위적으로 설명하기보다 옆에서 골라주는 사람처럼 말합니다. 다만 신뢰가 필요한 영역에서는 과한 친근함이 오히려 방해가 될 수 있어요.',
+        keywords: ['브랜드말투', '친근함', 'UX라이팅', '콘텐츠톤'],
+        insight: 'HR 문서에서는 친근한 말투와 정확한 기준을 분리해야 합니다. 제목은 부드럽게, 기준은 명확하게 쓰는 방식이 좋아요.',
+        usage: [
+          '"알려드립니다"보다 "이것만 확인해 주세요"처럼 행동 중심 문장 사용',
+          '복지 안내는 친근하게, 규정 안내는 명확하게 톤 분리',
+          '브랜드 말투 가이드를 만들어 반복되는 표현 통일'
+        ],
+        saved: false,
+        read: true,
+        isNew: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: '작은 사치보다 "작은 회복"이 더 강한 소비 키워드가 됐다',
+        category: 'lifestyle',
+        date: '04.22',
+        score: 81,
+        summary: '사람들이 소비를 통해 과시보다 회복을 원합니다. 수면, 산책, 향, 루틴, 저자극 케어 같은 키워드가 계속 콘텐츠 소재가 됩니다.',
+        keywords: ['회복소비', '웰니스', '루틴', '저자극'],
+        insight: '블로그에서는 제품 추천보다 "나를 덜 지치게 하는 루틴"처럼 경험 중심으로 쓰면 더 자연스럽습니다.',
+        usage: [
+          '복지 콘텐츠와 연결하면 건강검진, 휴가, 근무환경 이야기가 좋아짐',
+          '개인 블로그에서는 피부·수면·정리 루틴과 연결 가능',
+          '브랜드 콘텐츠에서는 제품 효능보다 사용 후 상태를 중심으로 설명'
+        ],
+        saved: false,
+        read: false,
+        isNew: false
+      },
+      {
+        id: crypto.randomUUID(),
+        title: '채용 콘텐츠도 이제 "회사 소개"보다 "지원자 입장 안내"가 중요하다',
+        category: 'hr',
+        date: '04.21',
+        score: 90,
+        summary: '지원자는 회사가 얼마나 대단한지보다 내가 들어가면 무엇을 하게 되는지, 어떤 절차를 거치는지, 어떤 분위기인지 알고 싶어합니다.',
+        keywords: ['채용브랜딩', '지원자경험', '입사안내', 'HR콘텐츠'],
+        insight: '채용공고와 회사 블로그는 홍보문보다 안내문에 가까워질수록 신뢰도가 올라갑니다.',
+        usage: [
+          '지원 절차를 타임라인으로 보여주기',
+          '신규입사자가 첫 주에 겪는 일을 콘텐츠화하기',
+          '직무 소개는 "하는 일 / 협업 대상 / 필요한 역량" 순서로 정리하기'
+        ],
+        saved: true,
+        read: false,
+        isNew: true
+      }
+    ];
+
+    const observationKeywords = [
+      { title: '말투는 가볍게, 정보는 정확하게', desc: '브랜드·HR 공통 핵심' },
+      { title: '짧은 콘텐츠 = 저장성', desc: '나중에 다시 보고 싶은 구조' },
+      { title: '밈은 원본보다 맥락', desc: '그대로 따라 하기보다 상황화' },
+      { title: '지원자 관점 콘텐츠', desc: '자랑보다 절차와 분위기' }
+    ];
+
+    let letters = loadLetters();
+    let currentCategory = 'all';
+    let currentView = 'all';
+    let searchText = '';
+
+    const letterList = document.getElementById('letterList');
+    const tabsArea = document.getElementById('tabsArea');
+    const statsArea = document.getElementById('statsArea');
+    const searchInput = document.getElementById('searchInput');
+    const viewSelect = document.getElementById('viewSelect');
+    const sectionHeading = document.getElementById('sectionHeading');
+    const sectionSub = document.getElementById('sectionSub');
+    const keywordPanel = document.getElementById('keywordPanel');
+    const toast = document.getElementById('toast');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalContent = document.getElementById('modalContent');
+    const closeModal = document.getElementById('closeModal');
+    const resetBtn = document.getElementById('resetBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
+
+    // ============ 백엔드 연결 (자동수집) ============
+    function isBackendReady() {
+      return Boolean(API_ENDPOINT && API_ENDPOINT.trim().startsWith("https://script.google.com/"));
+    }
+
+    function jsonpRequest(action, params = {}) {
+      return new Promise((resolve, reject) => {
+        if (!isBackendReady()) {
+          reject(new Error("API_ENDPOINT가 설정되지 않았습니다."));
+          return;
+        }
+
+        const callbackName = `joopCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+        const script = document.createElement("script");
+        const query = new URLSearchParams({
+          action,
+          callback: callbackName,
+          _: Date.now().toString(),
+          ...params
+        });
+
+        const cleanup = () => {
+          delete window[callbackName];
+          script.remove();
+        };
+
+        window[callbackName] = (data) => {
+          cleanup();
+          resolve(data);
+        };
+
+        script.onerror = () => {
+          cleanup();
+          reject(new Error("백엔드 요청에 실패했습니다."));
+        };
+
+        const separator = API_ENDPOINT.includes("?") ? "&" : "?";
+        script.src = `${API_ENDPOINT}${separator}${query.toString()}`;
+        document.body.appendChild(script);
+
+        setTimeout(() => {
+          if (window[callbackName]) {
+            cleanup();
+            reject(new Error("백엔드 응답 시간이 초과되었습니다."));
+          }
+        }, 20000);
+      });
+    }
+
+    // 백엔드에서 온 raw 데이터를 줍줍 카드 구조로 변환
+    function transformBackendItem(raw) {
+      const date = new Date(raw.date);
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      const dd = String(date.getDate()).padStart(2, '0');
+      const dateStr = `${mm}.${dd}`;
+
+      // category 보정 (백엔드가 보낸 게 우리 키랑 안 맞으면 lifestyle로)
+      const validCategories = ['meme', 'content', 'brand', 'lifestyle', 'hr'];
+      const category = validCategories.includes(raw.category) ? raw.category : 'lifestyle';
+
+      return {
+        id: raw.id,
+        title: raw.title,
+        category: category,
+        date: dateStr,
+        score: raw.score || 75,
+        summary: raw.summary || '원문에서 자세한 내용을 확인하세요.',
+        keywords: Array.isArray(raw.keywords) ? raw.keywords : [],
+        link: raw.link || '',
+        source: raw.source || '',
+        insight: '', // 자동수집 글은 인사이트 없음, 모달에서 처리
+        usage: [],
+        saved: raw.saved || false,
+        read: raw.read || false,
+        isNew: true
+      };
+    }
+
+    function mergeIncomingItems(incomingRaw = []) {
+      const existingMap = new Map(letters.map(item => [item.id, item]));
+      const merged = [];
+
+      incomingRaw.forEach(raw => {
+        const transformed = transformBackendItem(raw);
+        const old = existingMap.get(transformed.id);
+
+        if (old) {
+          // 기존 항목: saved/read 상태는 유지
+          merged.push({
+            ...transformed,
+            saved: old.saved,
+            read: old.read,
+            isNew: false,
+            insight: old.insight || ''
+          });
+          existingMap.delete(transformed.id);
+        } else {
+          merged.push(transformed);
+        }
+      });
+
+      // 백엔드에 없는 기존 글(직접 추가했거나 옛 글)은 유지
+      const remaining = Array.from(existingMap.values());
+
+      letters = [...merged, ...remaining]
+        .sort((a, b) => {
+          // 날짜 비교를 위해 MM.DD를 올해 기준 Date로
+          const year = new Date().getFullYear();
+          const da = new Date(`${year}/${a.date.replace('.', '/')}`);
+          const db = new Date(`${year}/${b.date.replace('.', '/')}`);
+          return db - da;
+        });
+      saveLetters();
+      renderAll();
+    }
+
+    async function fetchBackendList(options = {}) {
+      if (!isBackendReady()) return false;
+
+      try {
+        const data = await jsonpRequest("list");
+        if (!data || !data.ok) throw new Error(data?.message || "목록 가져오기 실패");
+        mergeIncomingItems(data.items || []);
+        if (!options.silent) showToast(`줍줍 ${data.items?.length || 0}개 불러왔어요 ✓`);
+        return true;
+      } catch (error) {
+        console.error(error);
+        if (!options.silent) showToast("백엔드 연결 실패 ㅠ");
+        return false;
+      }
+    }
+
+    async function fetchBackendRefresh() {
+      if (!isBackendReady()) {
+        showToast("백엔드가 설정되지 않았어요");
+        return false;
+      }
+
+      const originalText = refreshBtn.textContent;
+      refreshBtn.textContent = "수집중…";
+      refreshBtn.disabled = true;
+
+      try {
+        const data = await jsonpRequest("refresh");
+        if (!data || !data.ok) throw new Error(data?.message || "수집 실패");
+        await fetchBackendList({ silent: true });
+        showToast(`새 글 ${data.added || 0}개 줍줍 완료 🧺`);
+        return true;
+      } catch (error) {
+        console.error(error);
+        showToast("새 글 수집 실패 ㅠ");
+        return false;
+      } finally {
+        refreshBtn.textContent = originalText;
+        refreshBtn.disabled = false;
+      }
+    }
+
+
+    function loadLetters() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return defaultLetters;
+
+      try {
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : defaultLetters;
+      } catch {
+        return defaultLetters;
+      }
+    }
+
+    function saveLetters() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(letters));
+    }
+
+    function renderAll() {
+      renderStats();
+      renderTabs();
+      renderKeywords();
+      renderLetters();
+    }
+
+    function renderStats() {
+      const total = letters.length;
+      const saved = letters.filter(item => item.saved).length;
+      const unread = letters.filter(item => !item.read).length;
+      const newest = letters.filter(item => item.isNew).length;
+
+      statsArea.innerHTML = `
+        <div class="stat"><b>${total}</b><span>전체 줍줍</span></div>
+        <div class="stat"><b>${newest}</b><span>신규 트렌드</span></div>
+        <div class="stat"><b>${saved}</b><span>저장한 글감</span></div>
+        <div class="stat"><b>${unread}</b><span>안 읽은 것</span></div>
+      `;
+    }
+
+    function renderTabs() {
+      const categories = Object.keys(categoryMap);
+      tabsArea.innerHTML = categories.map(key => `
+        <button class="tab ${currentCategory === key ? 'active' : ''}" data-category="${key}">
+          ${categoryMap[key].icon} ${categoryMap[key].label}
+        </button>
+      `).join('');
+
+      tabsArea.querySelectorAll('.tab').forEach(button => {
+        button.addEventListener('click', () => {
+          currentCategory = button.dataset.category;
+          renderAll();
+        });
+      });
+    }
+
+    function renderKeywords() {
+      keywordPanel.innerHTML = observationKeywords.map(item => `
+        <div class="mini-item">
+          <b>${item.title}</b>
+          <span>${item.desc}</span>
+        </div>
+      `).join('');
+    }
+
+    function getFilteredLetters() {
+      return letters.filter(item => {
+        const matchCategory = currentCategory === 'all' || item.category === currentCategory;
+        const matchView =
+          currentView === 'all' ||
+          (currentView === 'new' && item.isNew) ||
+          (currentView === 'saved' && item.saved) ||
+          (currentView === 'unread' && !item.read);
+        const target = [item.title, item.summary, item.insight, ...(item.keywords || [])].join(' ').toLowerCase();
+        const matchSearch = !searchText || target.includes(searchText.toLowerCase());
+        return matchCategory && matchView && matchSearch;
+      });
+    }
+
+    function renderLetters() {
+      const filtered = getFilteredLetters();
+      const categoryLabel = categoryMap[currentCategory].label;
+      sectionHeading.textContent = currentCategory === 'all' ? '이번 주 줍줍' : `${categoryLabel} 줍줍`;
+      sectionSub.textContent = `${filtered.length}개의 트렌드 카드가 보여요.`;
+
+      if (filtered.length === 0) {
+        letterList.innerHTML = `
+          <div class="empty">
+            <div class="icon">🧺</div>
+            <h3>조건에 맞는 줍줍이 없어요</h3>
+            <p>검색어를 바꾸거나 다른 필터를 선택해보세요.</p>
+          </div>
+        `;
+        return;
+      }
+
+      letterList.innerHTML = filtered.map(item => `
+        <article class="letter-card ${item.read ? 'read' : ''}" data-card-id="${item.id}">
+          <div class="card-inner">
+            <div class="card-head">
+              <div style="flex:1; min-width:0;">
+                <div class="meta-line">
+                  <span class="badge ${categoryClass[item.category]}">${categoryMap[item.category].icon} ${categoryMap[item.category].label}</span>
+                  ${item.isNew ? '<span class="badge new">NEW</span>' : ''}
+                  ${item.saved ? '<span class="badge saved">★ 저장</span>' : ''}
+                  ${item.read ? '<span class="badge readed">읽음</span>' : ''}
+                  <span class="badge date">${item.date}</span>
+                  ${item.source ? `<span class="badge date">· ${escapeHtml(item.source)}</span>` : ''}
+                </div>
+                <h3 class="letter-title">${escapeHtml(item.title)}</h3>
+                <p class="letter-summary">${escapeHtml(item.summary)}</p>
+              </div>
+              <div class="score">${item.score}<small>SCORE</small></div>
+            </div>
+
+            <div class="keyword-row">
+              ${(item.keywords || []).map(keyword => `<span class="keyword">#${escapeHtml(keyword)}</span>`).join('')}
+            </div>
+
+            <div class="insight-box">${escapeHtml(item.insight || '블로그/브런치 글감으로 확장해보세요.')}</div>
+
+            <div class="card-actions">
+              <button class="action-btn dark" data-action="open" data-id="${item.id}">자세히 보기 →</button>
+              <button class="action-btn" data-action="save" data-id="${item.id}">${item.saved ? '★ 저장 해제' : '☆ 저장'}</button>
+              <button class="action-btn" data-action="read" data-id="${item.id}">${item.read ? '안 읽음' : '읽음 처리'}</button>
+              <button class="action-btn yellow" data-action="copy" data-id="${item.id}">글감 복사</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      letterList.querySelectorAll('[data-action]').forEach(button => {
+        button.addEventListener('click', (event) => {
+          event.stopPropagation();
+          handleCardAction(button.dataset.action, button.dataset.id);
+        });
+      });
+    }
+
+    function handleCardAction(action, id) {
+      const item = letters.find(letter => letter.id === id);
+      if (!item) return;
+
+      if (action === 'open') {
+        item.read = true;
+        saveLetters();
+        openModal(item);
+        renderAll();
+      }
+
+      if (action === 'save') {
+        item.saved = !item.saved;
+        saveLetters();
+        showToast(item.saved ? '저장했어요 ★' : '저장을 해제했어요');
+        renderAll();
+      }
+
+      if (action === 'read') {
+        item.read = !item.read;
+        saveLetters();
+        showToast(item.read ? '읽음 처리했어요' : '안 읽음으로 바꿨어요');
+        renderAll();
+      }
+
+      if (action === 'copy') {
+        copyPrompt(item);
+      }
+    }
+
+    function openModal(item) {
+      modalContent.innerHTML = `
+        <div class="meta-line">
+          <span class="badge ${categoryClass[item.category]}">${categoryMap[item.category].icon} ${categoryMap[item.category].label}</span>
+          <span class="badge date">${item.date}</span>
+          <span class="badge new">감도 ${item.score}</span>
+        </div>
+        <h2>${escapeHtml(item.title)}</h2>
+        <p class="lead">${escapeHtml(item.summary)}</p>
+
+        <div class="keyword-row">
+          ${(item.keywords || []).map(keyword => `<span class="keyword">#${escapeHtml(keyword)}</span>`).join('')}
+        </div>
+
+        ${item.insight ? `
+        <section class="article-section">
+          <h4>이 트렌드가 중요한 이유</h4>
+          <p>${escapeHtml(item.insight)}</p>
+        </section>
+        ` : ''}
+
+        ${(item.usage && item.usage.length) ? `
+        <section class="article-section">
+          <h4>블로그·브런치 활용법</h4>
+          <ul>
+            ${item.usage.map(text => `<li>${escapeHtml(text)}</li>`).join('')}
+          </ul>
+        </section>
+        ` : `
+        <section class="article-section">
+          <h4>줍줍 포인트</h4>
+          <p>${escapeHtml(item.summary)}</p>
+          <p style="margin-top:10px; color:#8a8a8a;">원문에서 더 자세한 흐름을 확인해보세요.</p>
+        </section>
+        `}
+
+        ${item.link ? `
+        <section class="article-section">
+          <h4>원문 보기</h4>
+          <p><a href="${escapeHtml(item.link)}" target="_blank" rel="noopener" style="color:#1a1a1a; text-decoration:underline; font-weight:700;">${escapeHtml(item.source || '원문 링크')} →</a></p>
+        </section>
+        ` : ''}
+      `;
+      modalBackdrop.classList.add('show');
+    }
+
+    function closeModalView() {
+      modalBackdrop.classList.remove('show');
+    }
+
+    function copyPrompt(item) {
+      const text = `트렌드 줍줍레터 글감
+
+제목: ${item.title}
+카테고리: ${categoryMap[item.category].label}
+한 줄 요약: ${item.summary}
+키워드: ${(item.keywords || []).join(', ')}
+활용 포인트: ${item.insight}
+
+이 내용을 바탕으로 네이버 블로그/브런치용 글을 작성하기.`;
+
+      navigator.clipboard.writeText(text)
+        .then(() => showToast('글감을 복사했어요 ✓'))
+        .catch(() => showToast('복사가 막혔어요. 직접 선택해서 복사해주세요.'));
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    searchInput.addEventListener('input', event => {
+      searchText = event.target.value.trim();
+      renderLetters();
+    });
+
+    viewSelect.addEventListener('change', event => {
+      currentView = event.target.value;
+      syncMobileNav();
+      renderAll();
+    });
+
+    document.querySelectorAll('[data-mobile-filter]').forEach(button => {
+      button.addEventListener('click', () => {
+        currentView = button.dataset.mobileFilter;
+        viewSelect.value = currentView;
+        syncMobileNav();
+        renderAll();
+      });
+    });
+
+    function syncMobileNav() {
+      document.querySelectorAll('[data-mobile-filter]').forEach(button => {
+        button.classList.toggle('active', button.dataset.mobileFilter === currentView);
+      });
+    }
+
+    closeModal.addEventListener('click', closeModalView);
+    modalBackdrop.addEventListener('click', event => {
+      if (event.target === modalBackdrop) closeModalView();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeModalView();
+    });
+
+    resetBtn.addEventListener('click', () => {
+      const ok = confirm('저장한 내용과 추가한 글감을 초기 상태로 되돌릴까요?');
+      if (!ok) return;
+      localStorage.removeItem(STORAGE_KEY);
+      letters = defaultLetters;
+      currentCategory = 'all';
+      currentView = 'all';
+      searchText = '';
+      searchInput.value = '';
+      viewSelect.value = 'all';
+      syncMobileNav();
+      showToast('초기화했어요');
+      renderAll();
+    });
+
+    let startY = 0;
+    let isPulling = false;
+
+    window.addEventListener('touchstart', event => {
+      if (window.scrollY === 0) {
+        startY = event.touches[0].clientY;
+        isPulling = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', event => {
+      if (!isPulling) return;
+      const endY = event.changedTouches[0].clientY;
+      if (endY - startY > 80) {
+        showToast('새로고침 완료! 오늘도 줍줍 준비 끝');
+        renderAll();
+      }
+      isPulling = false;
+    }, { passive: true });
+
+    refreshBtn.addEventListener('click', fetchBackendRefresh);
+
+    renderAll();
+
+    // 페이지 로드 시 백엔드에서 자동 데이터 가져오기
+    if (isBackendReady()) {
+      fetchBackendList({ silent: false });
+    }
+  </script>
+</body>
+</html>
