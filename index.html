@@ -1147,6 +1147,37 @@
       hr: 'cat-hr'
     };
 
+    function parseArticleDate(value) {
+      if (!value) return null;
+      const date = new Date(value);
+      return isNaN(date.getTime()) ? null : date;
+    }
+
+    function getPublishedValue(raw) {
+      return raw.publishedAt || raw.pubDate || raw.published || raw.isoDate || raw.date || raw.createdAt || '';
+    }
+
+    function formatShortDate(value) {
+      const date = parseArticleDate(value);
+      if (!date) return '날짜없음';
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      const dd = String(date.getDate()).padStart(2, '0');
+      return `${mm}.${dd}`;
+    }
+
+    function getArticleTime(item) {
+      const primary = parseArticleDate(item.publishedAt || item.pubDate || item.isoDate || item.createdAt);
+      if (primary) return primary.getTime();
+
+      // 기존 localStorage 데이터처럼 MM.DD만 남아 있는 경우를 위한 보정
+      if (item.date && /^\d{2}\.\d{2}$/.test(String(item.date))) {
+        const year = new Date().getFullYear();
+        const fallback = new Date(`${year}/${String(item.date).replace('.', '/')}`);
+        return isNaN(fallback.getTime()) ? 0 : fallback.getTime();
+      }
+      return 0;
+    }
+
     const defaultLetters = [];
 
     const observationKeywords = [
@@ -1229,21 +1260,22 @@
 
     // 백엔드에서 온 raw 데이터를 줍줍 카드 구조로 변환
     function transformBackendItem(raw) {
-      const parsedDate = raw.date ? new Date(raw.date) : new Date();
-      const date = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
-      const mm = String(date.getMonth() + 1).padStart(2, '0');
-      const dd = String(date.getDate()).padStart(2, '0');
-      const dateStr = `${mm}.${dd}`;
+      // 중요: 정렬 기준은 수집일/업데이트일이 아니라 기사 작성일입니다.
+      const publishedAt = getPublishedValue(raw);
+      const dateStr = formatShortDate(publishedAt);
+      const fetchedAt = raw.fetchedAt || new Date().toISOString();
 
       // category 보정 (백엔드가 보낸 게 우리 키랑 안 맞으면 lifestyle로)
       const validCategories = ['meme', 'content', 'brand', 'lifestyle', 'hr'];
       const category = validCategories.includes(raw.category) ? raw.category : 'lifestyle';
 
       return {
-        id: raw.id,
+        id: raw.id || raw.link || `${raw.title}-${publishedAt}`,
         title: raw.title,
         category: category,
-        date: dateStr,
+        date: dateStr,                 // 화면 표시용 MM.DD
+        publishedAt: publishedAt,       // 기사 작성일 / 발행일
+        fetchedAt: fetchedAt,           // 앱에서 수집한 날짜
         score: raw.score || 75,
         summary: raw.summary || '원문에서 자세한 내용을 확인하세요.',
         keywords: Array.isArray(raw.keywords) ? raw.keywords : [],
@@ -1285,13 +1317,7 @@
       const remaining = Array.from(existingMap.values()).filter(item => item.saved && item.link);
 
       letters = [...merged, ...remaining]
-        .sort((a, b) => {
-          // 날짜 비교를 위해 MM.DD를 올해 기준 Date로
-          const year = new Date().getFullYear();
-          const da = new Date(`${year}/${a.date.replace('.', '/')}`);
-          const db = new Date(`${year}/${b.date.replace('.', '/')}`);
-          return db - da;
-        });
+        .sort((a, b) => getArticleTime(b) - getArticleTime(a));
       saveLetters();
       renderAll();
     }
@@ -1442,7 +1468,7 @@
                   ${item.isNew ? '<span class="badge new">NEW</span>' : ''}
                   ${item.saved ? '<span class="badge saved">★ 저장</span>' : ''}
                   ${item.read ? '<span class="badge readed">읽음</span>' : ''}
-                  <span class="badge date">${item.date}</span>
+                  <span class="badge date" title="작성일: ${escapeHtml(item.publishedAt || item.date)}">${item.date}</span>
                   ${item.source ? `<span class="badge date">· ${escapeHtml(item.source)}</span>` : ''}
                 </div>
                 <h3 class="letter-title">${escapeHtml(item.title)}</h3>
@@ -1509,7 +1535,7 @@
       modalContent.innerHTML = `
         <div class="meta-line">
           <span class="badge ${categoryClass[item.category]}">${categoryMap[item.category].icon} ${categoryMap[item.category].label}</span>
-          <span class="badge date">${item.date}</span>
+          <span class="badge date" title="작성일: ${escapeHtml(item.publishedAt || item.date)}">${item.date}</span>
           <span class="badge new">감도 ${item.score}</span>
         </div>
         <h2>${escapeHtml(item.title)}</h2>
@@ -1554,12 +1580,7 @@
     function getSavedLettersForPublish() {
       return letters
         .filter(item => item.saved)
-        .sort((a, b) => {
-          const year = new Date().getFullYear();
-          const da = new Date(`${year}/${String(a.date || '').replace('.', '/')}`);
-          const db = new Date(`${year}/${String(b.date || '').replace('.', '/')}`);
-          return db - da;
-        });
+        .sort((a, b) => getArticleTime(b) - getArticleTime(a));
     }
 
     function buildPublishDraft(savedItems) {
