@@ -35,14 +35,7 @@
       --radius-card: 20px;
       --radius-btn: 12px;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
       min-height: 100vh;
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
@@ -52,1764 +45,1072 @@
       letter-spacing: -0.01em;
       -webkit-font-smoothing: antialiased;
     }
+    button, input, textarea, select { font-family: inherit; }
+    button { border: 0; cursor: pointer; background: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    .app { width: min(960px, 100%); margin: 0 auto; padding: 0 16px 110px; }
 
-    button, input, textarea, select {
-      font-family: inherit;
-    }
-
-    button {
-      border: 0;
-      cursor: pointer;
-      background: none;
-      color: inherit;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .app {
-      width: min(960px, 100%);
-      margin: 0 auto;
-      padding: 0 16px 110px;
-    }
-
-    /* ============ HEADER ============ */
+    /* ── TOPBAR ── */
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: sticky; top: 0; z-index: 30;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 16px 0 14px;
       background: var(--bg);
       border-bottom: 1px solid var(--line);
       margin-bottom: 28px;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .brand { display: flex; align-items: center; gap: 10px; }
     .brand-mark {
-      position: relative;
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background: var(--yellow);
-      border-radius: 14px;
-      box-shadow: var(--shadow-pill);
+      position: relative; width: 42px; height: 42px; flex: 0 0 42px;
+      display: grid; place-items: center; overflow: hidden;
+      background: var(--yellow); border-radius: 14px; box-shadow: var(--shadow-pill);
     }
-
-    .brand-mark img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    .brand-text strong {
-      display: block;
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-    }
-
-    .brand-text span {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--gray-500);
-      letter-spacing: 0.02em;
-      margin-top: 1px;
-    }
-
-    .top-actions {
-      display: flex;
-      gap: 8px;
-    }
-
+    .brand-mark img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .brand-text strong { display: block; font-size: 16px; font-weight: 800; letter-spacing: -0.04em; }
+    .brand-text span { display: block; font-size: 11px; font-weight: 600; color: var(--gray-500); letter-spacing: 0.02em; margin-top: 1px; }
+    .top-actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .ghost-btn {
-      min-height: 38px;
-      padding: 0 14px;
+      min-height: 38px; padding: 0 14px;
       border-radius: var(--radius-pill);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      color: var(--gray-700);
-      font-size: 13px;
-      font-weight: 700;
+      background: var(--paper); border: 1px solid var(--line);
+      color: var(--gray-700); font-size: 13px; font-weight: 700;
       transition: 0.15s;
     }
+    .ghost-btn:hover { border-color: var(--ink); color: var(--ink); }
+    .ghost-btn.accent { background: var(--ink); color: var(--yellow); border-color: var(--ink); }
+    .ghost-btn.accent:hover { background: var(--gray-900); }
 
-    .ghost-btn:hover {
-      border-color: var(--ink);
-      color: var(--ink);
-    }
-
-    /* ============ HERO ============ */
-    .hero {
-      position: relative;
-      padding: 32px 4px 24px;
-    }
-
+    /* ── HERO ── */
+    .hero { position: relative; padding: 32px 4px 24px; }
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      display: inline-flex; align-items: center; gap: 6px;
       padding: 6px 12px 6px 8px;
-      background: var(--ink);
-      color: var(--yellow);
+      background: var(--ink); color: var(--yellow);
       border-radius: var(--radius-pill);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.02em;
       margin-bottom: 20px;
     }
-
     .eyebrow::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      background: var(--yellow);
-      border-radius: 50%;
+      content: ""; width: 6px; height: 6px;
+      background: var(--yellow); border-radius: 50%;
       animation: pulse 1.6s ease-in-out infinite;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 56px);
-      line-height: 1.05;
-      letter-spacing: -0.06em;
-      font-weight: 900;
-      color: var(--ink);
-    }
-
-    .hero h1 .highlight {
-      position: relative;
-      display: inline-block;
-      z-index: 1;
-    }
-
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.05; letter-spacing: -0.06em; font-weight: 900; }
+    .hero h1 .highlight { position: relative; display: inline-block; z-index: 1; }
     .hero h1 .highlight::before {
-      content: "";
-      position: absolute;
-      left: -4px;
-      right: -4px;
-      bottom: 4px;
-      height: 38%;
-      background: var(--yellow);
-      z-index: -1;
-      border-radius: 4px;
+      content: ""; position: absolute; left: -4px; right: -4px; bottom: 4px;
+      height: 38%; background: var(--yellow); z-index: -1; border-radius: 4px;
     }
+    .hero p.lead { max-width: 540px; margin-top: 18px; color: var(--gray-700); font-size: 15px; font-weight: 500; line-height: 1.65; }
 
-    .hero p.lead {
-      max-width: 540px;
-      margin-top: 18px;
-      color: var(--gray-700);
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.65;
-    }
+    /* ── STATS ── */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 28px; }
+    .stat { padding: 16px 14px; border-radius: var(--radius-card); background: var(--paper); border: 1px solid var(--line); transition: 0.2s; }
+    .stat:hover { border-color: var(--ink); transform: translateY(-2px); }
+    .stat b { display: block; font-size: 26px; font-weight: 900; letter-spacing: -0.05em; }
+    .stat span { display: block; margin-top: 2px; color: var(--gray-500); font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
 
-    /* ============ STATS ============ */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-top: 28px;
-    }
-
-    .stat {
-      padding: 16px 14px;
-      border-radius: var(--radius-card);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      transition: 0.2s;
-    }
-
-    .stat:hover {
-      border-color: var(--ink);
-      transform: translateY(-2px);
-    }
-
-    .stat b {
-      display: block;
-      font-size: 26px;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      color: var(--ink);
-    }
-
-    .stat span {
-      display: block;
-      margin-top: 2px;
-      color: var(--gray-500);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    /* ============ TOOLBAR ============ */
-    .toolbar {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      margin-top: 32px;
-      margin-bottom: 16px;
-    }
-
+    /* ── TOOLBAR ── */
+    .toolbar { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 32px; margin-bottom: 16px; }
     .search-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 0 18px;
-      border-radius: var(--radius-pill);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      transition: 0.2s;
+      display: flex; align-items: center; gap: 10px; min-height: 50px; padding: 0 18px;
+      border-radius: var(--radius-pill); background: var(--paper); border: 1px solid var(--line); transition: 0.2s;
     }
-
-    .search-wrap:focus-within {
-      border-color: var(--ink);
-    }
-
-    .search-wrap span {
-      font-size: 16px;
-      color: var(--gray-500);
-    }
-
-    .search-wrap input {
-      width: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .search-wrap input::placeholder {
-      color: var(--gray-500);
-      font-weight: 500;
-    }
-
+    .search-wrap:focus-within { border-color: var(--ink); }
+    .search-wrap span { font-size: 16px; color: var(--gray-500); }
+    .search-wrap input { width: 100%; border: 0; outline: 0; background: transparent; font-size: 14px; font-weight: 600; color: var(--ink); }
+    .search-wrap input::placeholder { color: var(--gray-500); font-weight: 500; }
     .view-select {
-      min-width: 130px;
-      min-height: 50px;
-      padding: 0 18px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--line);
-      outline: 0;
+      min-width: 130px; min-height: 50px; padding: 0 18px;
+      border-radius: var(--radius-pill); border: 1px solid var(--line); outline: 0;
       background: var(--paper) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") no-repeat right 18px center;
-      background-size: 12px;
-      color: var(--ink);
-      font-size: 13px;
-      font-weight: 700;
-      appearance: none;
+      background-size: 12px; color: var(--ink); font-size: 13px; font-weight: 700; appearance: none;
     }
 
-    /* ============ TABS ============ */
-    .tabs {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding: 4px 0 16px;
-      scrollbar-width: none;
-    }
-
+    /* ── TABS ── */
+    .tabs { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 16px; scrollbar-width: none; }
     .tabs::-webkit-scrollbar { display: none; }
-
     .tab {
-      flex: 0 0 auto;
-      min-height: 38px;
-      padding: 0 14px;
-      border-radius: var(--radius-pill);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      color: var(--gray-700);
-      font-size: 13px;
-      font-weight: 700;
-      transition: 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
+      flex: 0 0 auto; min-height: 38px; padding: 0 14px;
+      border-radius: var(--radius-pill); background: var(--paper); border: 1px solid var(--line);
+      color: var(--gray-700); font-size: 13px; font-weight: 700; transition: 0.15s;
+      display: inline-flex; align-items: center; gap: 5px;
     }
+    .tab:hover { border-color: var(--ink); color: var(--ink); }
+    .tab.active { background: var(--ink); color: var(--yellow); border-color: var(--ink); }
 
-    .tab:hover {
-      border-color: var(--ink);
-      color: var(--ink);
-    }
+    /* ── MAIN GRID ── */
+    .main-grid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 18px; align-items: start; }
+    .section-title { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin: 4px 4px 14px; }
+    .section-title h2 { font-size: 20px; letter-spacing: -0.05em; font-weight: 900; }
+    .section-title p { color: var(--gray-500); font-size: 12px; font-weight: 700; }
 
-    .tab.active {
-      background: var(--ink);
-      color: var(--yellow);
-      border-color: var(--ink);
-    }
-
-    /* ============ MAIN GRID ============ */
-    .main-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 280px;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 12px;
-      margin: 4px 4px 14px;
-    }
-
-    .section-title h2 {
-      font-size: 20px;
-      letter-spacing: -0.05em;
-      font-weight: 900;
-    }
-
-    .section-title p {
-      color: var(--gray-500);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    /* ============ CARDS ============ */
-    .letter-list {
-      display: grid;
-      gap: 12px;
-    }
-
+    /* ── CARDS ── */
+    .letter-list { display: grid; gap: 12px; }
     .letter-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--radius-card);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-card);
-      transition: 0.2s ease;
-      cursor: pointer;
+      position: relative; overflow: hidden;
+      border-radius: var(--radius-card); background: var(--paper);
+      border: 1px solid var(--line); box-shadow: var(--shadow-card);
+      transition: 0.2s ease; cursor: pointer;
     }
-
-    .letter-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--gray-300);
-    }
-
-    .letter-card.read {
-      opacity: 0.62;
-    }
-
-    .letter-card.read:hover {
-      opacity: 1;
-    }
-
-    .card-inner {
-      padding: 22px;
-    }
-
-    .card-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-
-    .meta-line {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
+    .letter-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: var(--gray-300); }
+    .letter-card.read { opacity: 0.62; }
+    .letter-card.read:hover { opacity: 1; }
+    .card-inner { padding: 22px; }
+    .card-head { display: flex; justify-content: space-between; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+    .meta-line { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      min-height: 24px;
-      padding: 0 9px;
-      border-radius: var(--radius-pill);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
+      display: inline-flex; align-items: center; gap: 4px;
+      min-height: 24px; padding: 0 9px;
+      border-radius: var(--radius-pill); font-size: 11px; font-weight: 800; letter-spacing: -0.01em;
     }
-
-    .badge.cat {
-      background: var(--gray-100);
-      color: var(--gray-900);
-    }
-
+    .badge.cat { background: var(--gray-100); color: var(--gray-900); }
     .badge.cat-meme { background: #FFF4A3; color: #5a4400; }
     .badge.cat-content { background: #E0F0FF; color: #1d4f8b; }
     .badge.cat-brand { background: #FFE0E8; color: #8a2945; }
     .badge.cat-lifestyle { background: #DEF2DA; color: #2f5a26; }
     .badge.cat-hr { background: #E8DFF7; color: #4a2e8c; }
-
-    .badge.new {
-      background: var(--ink);
-      color: var(--yellow);
-    }
-
-    .badge.saved {
-      background: var(--yellow);
-      color: var(--ink);
-    }
-
-    .badge.readed {
-      background: transparent;
-      color: var(--gray-500);
-      border: 1px solid var(--line);
-    }
-
-    .badge.date {
-      background: transparent;
-      color: var(--gray-500);
-      padding-left: 4px;
-    }
-
-    .letter-title {
-      font-size: 21px;
-      line-height: 1.3;
-      letter-spacing: -0.05em;
-      font-weight: 800;
-      margin-bottom: 8px;
-      word-break: keep-all;
-      color: var(--ink);
-    }
-
-    .letter-summary {
-      color: var(--gray-700);
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1.6;
-      word-break: keep-all;
-    }
-
+    .badge.new { background: var(--ink); color: var(--yellow); }
+    .badge.saved { background: var(--yellow); color: var(--ink); }
+    .badge.readed { background: transparent; color: var(--gray-500); border: 1px solid var(--line); }
+    .badge.date { background: transparent; color: var(--gray-500); padding-left: 4px; }
+    .letter-title { font-size: 21px; line-height: 1.3; letter-spacing: -0.05em; font-weight: 800; margin-bottom: 8px; word-break: keep-all; }
+    .letter-summary { color: var(--gray-700); font-size: 14px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.6; word-break: keep-all; }
     .score {
-      flex: 0 0 auto;
-      display: grid;
-      place-items: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      background: var(--yellow);
-      color: var(--ink);
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      line-height: 1;
+      flex: 0 0 auto; display: grid; place-items: center;
+      width: 50px; height: 50px; border-radius: 14px;
+      background: var(--yellow); color: var(--ink);
+      font-size: 18px; font-weight: 900; letter-spacing: -0.05em; line-height: 1;
     }
-
-    .score small {
-      display: block;
-      font-size: 8px;
-      font-weight: 800;
-      margin-top: 3px;
-      letter-spacing: 0.04em;
-      opacity: 0.7;
-    }
-
-    .keyword-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin: 14px 0 14px;
-    }
-
-    .keyword {
-      padding: 4px 9px;
-      border-radius: 7px;
-      background: var(--gray-50);
-      color: var(--gray-700);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
+    .score small { display: block; font-size: 8px; font-weight: 800; margin-top: 3px; letter-spacing: 0.04em; opacity: 0.7; }
+    .keyword-row { display: flex; flex-wrap: wrap; gap: 5px; margin: 14px 0; }
+    .keyword { padding: 4px 9px; border-radius: 7px; background: var(--gray-50); color: var(--gray-700); font-size: 11px; font-weight: 700; }
     .insight-box {
-      position: relative;
-      padding: 14px 14px 14px 40px;
-      border-radius: 14px;
-      background: var(--yellow-pale);
-      color: var(--gray-900);
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 1.55;
-      letter-spacing: -0.01em;
+      position: relative; padding: 14px 14px 14px 40px;
+      border-radius: 14px; background: var(--yellow-pale);
+      color: var(--gray-900); font-size: 13px; font-weight: 600; line-height: 1.55; letter-spacing: -0.01em;
     }
-
-    .insight-box::before {
-      content: "💡";
-      position: absolute;
-      left: 14px;
-      top: 13px;
-      font-size: 16px;
-    }
-
-    .card-actions {
-      display: flex;
-      gap: 6px;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
+    .insight-box::before { content: "💡"; position: absolute; left: 14px; top: 13px; font-size: 16px; }
+    .card-actions { display: flex; gap: 6px; margin-top: 16px; flex-wrap: wrap; }
     .action-btn {
-      min-height: 36px;
-      padding: 0 12px;
-      border-radius: var(--radius-btn);
-      background: var(--gray-100);
-      color: var(--ink);
-      font-size: 12px;
-      font-weight: 800;
-      transition: 0.15s;
+      min-height: 36px; padding: 0 12px; border-radius: var(--radius-btn);
+      background: var(--gray-100); color: var(--ink);
+      font-size: 12px; font-weight: 800; transition: 0.15s;
     }
-
-    .action-btn:hover {
-      background: var(--gray-300);
+    .action-btn:hover { background: var(--gray-300); }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .action-btn.dark { background: var(--ink); color: var(--paper); }
+    .action-btn.dark:hover { background: var(--gray-900); }
+    .action-btn.yellow { background: var(--yellow); color: var(--ink); }
+    .action-btn.yellow:hover { background: #ffd900; }
+    .action-btn.ai {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff; font-size: 13px; padding: 0 16px; min-height: 40px;
     }
+    .action-btn.ai:hover { filter: brightness(1.1); }
+    .action-btn.ai:disabled { opacity: 0.5; cursor: not-allowed; filter: none; }
 
-    .action-btn.dark {
-      background: var(--ink);
-      color: var(--paper);
-    }
+    /* ── SIDE PANEL ── */
+    .side { position: sticky; top: 92px; display: grid; gap: 12px; }
+    .panel { border-radius: var(--radius-card); background: var(--paper); border: 1px solid var(--line); overflow: hidden; }
+    .panel.dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .panel-header { padding: 18px 18px 8px; }
+    .panel.dark .panel-header h3 { color: var(--yellow); }
+    .panel-header h3 { font-size: 15px; font-weight: 900; letter-spacing: -0.04em; }
+    .panel-header p { margin-top: 3px; color: var(--gray-500); font-size: 11px; font-weight: 700; }
+    .panel-body { padding: 0 18px 18px; }
+    .mini-list { display: grid; gap: 8px; }
+    .mini-item { padding: 12px; border-radius: 12px; background: var(--gray-50); transition: 0.15s; cursor: default; }
+    .panel.dark .mini-item { background: rgba(255,255,255,0.06); }
+    .mini-item:hover { background: var(--yellow-pale); }
+    .panel.dark .mini-item:hover { background: rgba(255, 232, 18, 0.12); }
+    .mini-item b { display: block; font-size: 12px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 2px; }
+    .mini-item span { color: var(--gray-500); font-size: 11px; font-weight: 600; }
 
-    .action-btn.dark:hover {
-      background: var(--gray-900);
-    }
+    /* ── EMPTY ── */
+    .empty { padding: 60px 20px; text-align: center; border-radius: var(--radius-card); background: var(--paper); border: 1px dashed var(--gray-300); }
+    .empty .icon { display: inline-grid; place-items: center; width: 56px; height: 56px; background: var(--yellow); border-radius: 18px; font-size: 26px; margin-bottom: 14px; }
+    .empty h3 { font-size: 17px; letter-spacing: -0.04em; margin-bottom: 6px; font-weight: 800; }
+    .empty p { color: var(--gray-500); font-size: 13px; font-weight: 600; }
 
-    .action-btn.yellow {
-      background: var(--yellow);
-      color: var(--ink);
-    }
-
-    .action-btn.yellow:hover {
-      background: #ffd900;
-    }
-
-    /* ============ SIDE PANEL ============ */
-    .side {
-      position: sticky;
-      top: 92px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .panel {
-      border-radius: var(--radius-card);
-      background: var(--paper);
-      border: 1px solid var(--line);
-      overflow: hidden;
-    }
-
-    .panel.dark {
-      background: var(--ink);
-      color: var(--paper);
-      border-color: var(--ink);
-    }
-
-    .panel-header {
-      padding: 18px 18px 8px;
-    }
-
-    .panel.dark .panel-header h3 {
-      color: var(--yellow);
-    }
-
-    .panel-header h3 {
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-    }
-
-    .panel-header p {
-      margin-top: 3px;
-      color: var(--gray-500);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .panel.dark .panel-header p {
-      color: var(--gray-500);
-    }
-
-    .panel-body {
-      padding: 0 18px 18px;
-    }
-
-    .mini-list {
-      display: grid;
-      gap: 8px;
-    }
-
-    .mini-item {
-      padding: 12px;
-      border-radius: 12px;
-      background: var(--gray-50);
-      transition: 0.15s;
-      cursor: default;
-    }
-
-    .panel.dark .mini-item {
-      background: rgba(255,255,255,0.06);
-    }
-
-    .mini-item:hover {
-      background: var(--yellow-pale);
-    }
-
-    .panel.dark .mini-item:hover {
-      background: rgba(255, 232, 18, 0.12);
-    }
-
-    .mini-item b {
-      display: block;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 2px;
-    }
-
-    .mini-item span {
-      color: var(--gray-500);
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .panel.dark .mini-item span {
-      color: var(--gray-500);
-    }
-
-    /* ============ EMPTY STATE ============ */
-    .empty {
-      padding: 60px 20px;
-      text-align: center;
-      border-radius: var(--radius-card);
-      background: var(--paper);
-      border: 1px dashed var(--gray-300);
-    }
-
-    .empty .icon {
-      display: inline-grid;
-      place-items: center;
-      width: 56px;
-      height: 56px;
-      background: var(--yellow);
-      border-radius: 18px;
-      font-size: 26px;
-      margin-bottom: 14px;
-    }
-
-    .empty h3 {
-      font-size: 17px;
-      letter-spacing: -0.04em;
-      margin-bottom: 6px;
-      font-weight: 800;
-    }
-
-    .empty p {
-      color: var(--gray-500);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    /* ============ MODAL ============ */
+    /* ── MODAL ── */
     .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
+      position: fixed; inset: 0; display: none;
+      align-items: flex-end; justify-content: center;
       padding: 16px;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
-      z-index: 100;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 100;
     }
-
-    .modal-backdrop.show {
-      display: flex;
-      animation: fadeIn 0.2s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .modal {
-      width: min(720px, 100%);
-      max-height: 88vh;
-      overflow: auto;
-      border-radius: 24px;
-      background: var(--paper);
-      animation: slideUp 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(40px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
+    .modal-backdrop.show { display: flex; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal { width: min(720px, 100%); max-height: 88vh; overflow: auto; border-radius: 24px; background: var(--paper); animation: slideUp 0.25s cubic-bezier(0.2, 0.9, 0.3, 1); }
+    @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .modal-top {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: sticky; top: 0; z-index: 1;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 16px 20px;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
     }
-
-    .modal-top b {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0;
-      color: var(--gray-700);
-    }
-
+    .modal-top b { font-size: 13px; font-weight: 800; color: var(--gray-700); }
     .close-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 11px;
-      background: var(--gray-100);
-      color: var(--ink);
-      font-size: 18px;
-      font-weight: 700;
-      display: grid;
-      place-items: center;
-      transition: 0.15s;
+      width: 34px; height: 34px; border-radius: 11px;
+      background: var(--gray-100); color: var(--ink);
+      font-size: 18px; font-weight: 700; display: grid; place-items: center; transition: 0.15s;
     }
-
-    .close-btn:hover {
-      background: var(--gray-300);
-    }
-
-    .modal-content {
-      padding: 24px;
-    }
-
-    .modal-content h2 {
-      font-size: 28px;
-      line-height: 1.22;
-      letter-spacing: -0.06em;
-      font-weight: 900;
-      margin: 14px 0 12px;
-    }
-
-    .modal-content .lead {
-      color: var(--gray-700);
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.65;
-      margin-bottom: 22px;
-    }
-
-    .article-section {
-      padding: 18px;
-      border-radius: 16px;
-      background: var(--gray-50);
-      margin-top: 12px;
-    }
-
+    .close-btn:hover { background: var(--gray-300); }
+    .modal-content { padding: 24px; }
+    .modal-content h2 { font-size: 28px; line-height: 1.22; letter-spacing: -0.06em; font-weight: 900; margin: 14px 0 12px; }
+    .modal-content .lead { color: var(--gray-700); font-size: 15px; font-weight: 500; line-height: 1.65; margin-bottom: 22px; }
+    .article-section { padding: 18px; border-radius: 16px; background: var(--gray-50); margin-top: 12px; }
     .article-section h4 {
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-size: 13px; font-weight: 900; letter-spacing: -0.03em;
+      margin-bottom: 10px; color: var(--ink);
+      display: flex; align-items: center; gap: 6px;
     }
+    .article-section h4::before { content: ""; width: 14px; height: 3px; background: var(--yellow); border-radius: 2px; }
+    .article-section p, .article-section li { color: var(--gray-700); font-size: 14px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.65; }
+    .article-section ul { padding-left: 18px; display: grid; gap: 6px; }
 
-    .article-section h4::before {
-      content: "";
-      width: 14px;
-      height: 3px;
-      background: var(--yellow);
-      border-radius: 2px;
-    }
-
-    .article-section p,
-    .article-section li {
-      color: var(--gray-700);
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1.65;
-    }
-
-    .article-section ul {
-      padding-left: 18px;
-      display: grid;
-      gap: 6px;
-    }
-
-    /* ============ TOAST ============ */
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 90px;
-      transform: translateX(-50%) translateY(20px);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 200;
-      padding: 12px 20px;
-      border-radius: var(--radius-pill);
-      background: var(--ink);
-      color: var(--yellow);
-      font-size: 13px;
-      font-weight: 800;
-      transition: 0.22s ease;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-      white-space: nowrap;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* ============ MOBILE BOTTOM NAV ============ */
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: 16px;
-      z-index: 40;
-      transform: translateX(-50%);
-      display: none;
-      width: min(420px, calc(100% - 26px));
-      padding: 6px;
-      border-radius: 22px;
-      background: var(--ink);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
-    }
-
-    .bottom-nav button {
-      flex: 1;
-      min-height: 42px;
-      border-radius: 16px;
-      background: transparent;
-      color: rgba(255,255,255,0.6);
-      font-size: 12px;
-      font-weight: 800;
-      transition: 0.15s;
-    }
-
-    .bottom-nav button.active {
-      background: var(--yellow);
-      color: var(--ink);
-    }
-
-
-    /* ============ PUBLISH LETTER ============ */
-    .publish-summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 14px 0 18px;
-    }
-
-    .publish-summary .stat-mini {
-      padding: 12px;
-      border-radius: 14px;
-      background: var(--gray-50);
-      border: 1px solid var(--line);
-    }
-
-    .publish-summary .stat-mini b {
-      display: block;
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--ink);
-      letter-spacing: -0.04em;
-    }
-
-    .publish-summary .stat-mini span {
-      display: block;
-      margin-top: 2px;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--gray-500);
-    }
-
-    .draft-box {
-      width: 100%;
-      min-height: 360px;
-      padding: 18px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      outline: 0;
-      resize: vertical;
-      background: var(--gray-50);
-      color: var(--ink);
-      font-family: inherit;
-      font-size: 14px;
-      line-height: 1.7;
-      font-weight: 500;
+    /* ── AI 생성 영역 ── */
+    .ai-result-box {
+      width: 100%; min-height: 400px; padding: 18px;
+      border-radius: 16px; border: 2px solid transparent;
+      background: linear-gradient(var(--paper), var(--paper)) padding-box,
+                  linear-gradient(135deg, #7c3aed44, #4f46e544) border-box;
+      outline: 0; resize: vertical;
+      color: var(--ink); font-family: inherit;
+      font-size: 14px; line-height: 1.8; font-weight: 500;
       white-space: pre-wrap;
     }
-
-    .modal-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
+    .draft-box {
+      width: 100%; min-height: 360px; padding: 18px;
+      border-radius: 16px; border: 1px solid var(--line); outline: 0; resize: vertical;
+      background: var(--gray-50); color: var(--ink);
+      font-family: inherit; font-size: 14px; line-height: 1.7; font-weight: 500;
+      white-space: pre-wrap;
     }
+    .modal-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .modal-actions .action-btn { min-height: 40px; }
 
-    .modal-actions .action-btn {
-      min-height: 40px;
+    /* ── AI 로딩 ── */
+    .ai-loading {
+      display: none; align-items: center; gap: 10px;
+      padding: 14px 18px; border-radius: 14px;
+      background: linear-gradient(135deg, #f5f3ff, #eef2ff);
+      border: 1px solid #e0d9ff; margin-top: 12px;
+      font-size: 13px; font-weight: 700; color: #4f46e5;
     }
+    .ai-loading.show { display: flex; }
+    .spinner {
+      width: 18px; height: 18px; border: 2px solid #c7d2fe;
+      border-top-color: #4f46e5; border-radius: 50%;
+      animation: spin 0.7s linear infinite; flex: 0 0 18px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* ── API KEY MODAL ── */
+    .key-input {
+      width: 100%; padding: 12px 14px;
+      border-radius: 10px; border: 1px solid var(--line);
+      font-size: 14px; font-family: monospace; outline: 0;
+      background: var(--gray-50); color: var(--ink);
+      transition: 0.2s;
+    }
+    .key-input:focus { border-color: #7c3aed; box-shadow: 0 0 0 3px #7c3aed1a; }
+    .key-status {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: var(--radius-pill);
+      font-size: 11px; font-weight: 800;
+    }
+    .key-status.set { background: #DEF2DA; color: #2f5a26; }
+    .key-status.unset { background: var(--gray-100); color: var(--gray-500); }
+
+    /* ── PUBLISH SUMMARY ── */
+    .publish-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0 18px; }
+    .publish-summary .stat-mini { padding: 12px; border-radius: 14px; background: var(--gray-50); border: 1px solid var(--line); }
+    .publish-summary .stat-mini b { display: block; font-size: 20px; font-weight: 900; letter-spacing: -0.04em; }
+    .publish-summary .stat-mini span { display: block; margin-top: 2px; font-size: 11px; font-weight: 700; color: var(--gray-500); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; left: 50%; bottom: 90px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0; pointer-events: none; z-index: 200;
+      padding: 12px 20px; border-radius: var(--radius-pill);
+      background: var(--ink); color: var(--yellow);
+      font-size: 13px; font-weight: 800;
+      transition: 0.22s ease; box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── MOBILE NAV ── */
+    .bottom-nav {
+      position: fixed; left: 50%; bottom: 16px; z-index: 40;
+      transform: translateX(-50%); display: none;
+      width: min(420px, calc(100% - 26px)); padding: 6px;
+      border-radius: 22px; background: var(--ink);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+    }
+    .bottom-nav button { flex: 1; min-height: 42px; border-radius: 16px; background: transparent; color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 800; transition: 0.15s; }
+    .bottom-nav button.active { background: var(--yellow); color: var(--ink); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) { .main-grid { grid-template-columns: 1fr; } .side { position: static; } }
     @media (max-width: 600px) {
-      .publish-summary {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ============ RESPONSIVE ============ */
-    @media (max-width: 860px) {
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .side {
-        position: static;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .toolbar {
-        grid-template-columns: 1fr;
-      }
-
-      .view-select {
-        display: none;
-      }
-
-      .card-inner {
-        padding: 18px;
-      }
-
-      .letter-title {
-        font-size: 18px;
-      }
-
-      .modal-content h2 {
-        font-size: 22px;
-      }
-
-      .bottom-nav {
-        display: flex;
-      }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .toolbar { grid-template-columns: 1fr; }
+      .view-select, .ghost-btn.hide-mobile { display: none; }
+      .card-inner { padding: 18px; }
+      .letter-title { font-size: 18px; }
+      .modal-content h2 { font-size: 22px; }
+      .bottom-nav { display: flex; }
+      .publish-summary { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark"><img src="https://res.cloudinary.com/dpvcmcpc2/image/upload/v1777003978/ChatGPT_Image_2026%EB%85%84_4%EC%9B%94_24%EC%9D%BC_%EC%98%A4%ED%9B%84_01_12_24_dplad5.png" alt="줍줍레터 아이콘"></div>
-        <div class="brand-text">
-          <strong>줍줍레터</strong>
-          <span>TREND PICKED DAILY</span>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <img src="https://res.cloudinary.com/dpvcmcpc2/image/upload/v1777003978/ChatGPT_Image_2026%EB%85%84_4%EC%9B%94_24%EC%9D%BC_%EC%98%A4%ED%9B%84_01_12_24_dplad5.png" alt="줍줍레터 아이콘">
+      </div>
+      <div class="brand-text">
+        <strong>줍줍레터</strong>
+        <span>TREND PICKED DAILY</span>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="ghost-btn" id="refreshBtn" title="새로고침">↻ 새 글</button>
+      <button class="ghost-btn" id="publishBtn">레터 발행</button>
+      <button class="ghost-btn accent" id="apiKeyBtn">🔑 API 키</button>
+      <button class="ghost-btn hide-mobile" id="resetBtn">초기화</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">LIVE · 오늘의 트렌드 줍줍 중</div>
+    <h1>오늘도<br><span class="highlight">트렌드</span>를 줍줍.</h1>
+    <p class="lead">밈, 숏폼, 브랜드 말투, 라이프스타일, HR 콘텐츠까지.<br>실시간 RSS 기반으로 새 글을 수집해 모아두는 가벼운 보드.</p>
+    <div class="stats" id="statsArea"></div>
+  </section>
+
+  <div class="toolbar">
+    <label class="search-wrap">
+      <span>🔎</span>
+      <input id="searchInput" type="search" placeholder="키워드, 카테고리, 글감 검색" />
+    </label>
+    <select class="view-select" id="viewSelect" aria-label="보기 필터">
+      <option value="all">전체 보기</option>
+      <option value="new">신규만</option>
+      <option value="saved">저장한 것</option>
+      <option value="unread">안 읽은 것</option>
+    </select>
+  </div>
+
+  <nav class="tabs" id="tabsArea" aria-label="카테고리"></nav>
+
+  <main class="main-grid">
+    <section>
+      <div class="section-title">
+        <div>
+          <h2 id="sectionHeading">이번 주 줍줍</h2>
+          <p id="sectionSub">요즘 흐름을 카드로 모아봤어요.</p>
         </div>
       </div>
-      <div class="top-actions">
-        <button class="ghost-btn" id="refreshBtn" title="새로고침">↻ 새 글</button>
-        <button class="ghost-btn" id="publishBtn">레터 발행</button>
-        <button class="ghost-btn" id="resetBtn">초기화</button>
-      </div>
-    </header>
-
-    <section class="hero">
-      <div class="eyebrow">LIVE · 오늘의 트렌드 줍줍 중</div>
-      <h1>
-        오늘도<br>
-        <span class="highlight">트렌드</span>를 줍줍.
-      </h1>
-      <p class="lead">
-        밈, 숏폼, 브랜드 말투, 라이프스타일, HR 콘텐츠까지.<br>
-        실시간 RSS 기반으로 새 글을 수집해 모아두는 가벼운 보드.
-      </p>
-
-      <div class="stats" id="statsArea"></div>
+      <div class="letter-list" id="letterList"></div>
     </section>
+    <aside class="side">
+      <section class="panel dark">
+        <div class="panel-header">
+          <h3>이번 주 관찰 키워드</h3>
+          <p>레터로 확장하기 좋은 핵심 인사이트</p>
+        </div>
+        <div class="panel-body">
+          <div class="mini-list" id="keywordPanel"></div>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-header">
+          <h3>저장 글감 발행</h3>
+          <p>저장한 카드만 모아 Claude AI로 브런치 글 작성</p>
+        </div>
+        <div class="panel-body" style="display:grid;gap:8px;">
+          <button class="action-btn ai" id="publishSideBtn" style="width:100%; min-height:44px; font-size:13px;">✨ AI로 브런치 글 쓰기</button>
+          <button class="action-btn" id="publishManualBtn" style="width:100%; min-height:40px;">📋 수동 초안 만들기</button>
+        </div>
+      </section>
+    </aside>
+  </main>
+</div>
 
-    <div class="toolbar">
-      <label class="search-wrap">
-        <span>🔎</span>
-        <input id="searchInput" type="search" placeholder="키워드, 카테고리, 글감 검색" />
-      </label>
-      <select class="view-select" id="viewSelect" aria-label="보기 필터">
-        <option value="all">전체 보기</option>
-        <option value="new">신규만</option>
-        <option value="saved">저장한 것</option>
-        <option value="unread">안 읽은 것</option>
-      </select>
+<nav class="bottom-nav" aria-label="모바일 메뉴">
+  <button class="active" data-mobile-filter="all">전체</button>
+  <button data-mobile-filter="new">신규</button>
+  <button data-mobile-filter="saved">저장</button>
+  <button data-mobile-filter="unread">안읽음</button>
+</nav>
+
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+  <article class="modal">
+    <div class="modal-top">
+      <b id="modalTopLabel">줍줍 상세</b>
+      <button class="close-btn" id="closeModal" aria-label="닫기">×</button>
+    </div>
+    <div class="modal-content" id="modalContent"></div>
+  </article>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   CONFIG
+   ============================================================ */
+const STORAGE_KEY        = 'trend_joopjoop_letter_v4_latest';
+const CLAUDE_KEY_STORAGE = 'joopjoop_claude_key';
+const API_ENDPOINT       = "https://script.google.com/macros/s/AKfycbyDe18h-TpYJJXOQ69liDt-KKvynPY1muxWch2C015D8yNT0GAUnYj38fexP4uY7QBo/exec";
+const CLAUDE_MODEL       = 'claude-sonnet-4-6';
+
+const categoryMap = {
+  all:       { label: '전체',    icon: '🧺' },
+  meme:      { label: '밈',      icon: '😂' },
+  content:   { label: '콘텐츠',  icon: '🎬' },
+  brand:     { label: '브랜드',  icon: '🛍️' },
+  lifestyle: { label: '라이프',  icon: '🌿' },
+  hr:        { label: 'HR',      icon: '💼' }
+};
+const categoryClass = { meme:'cat-meme', content:'cat-content', brand:'cat-brand', lifestyle:'cat-lifestyle', hr:'cat-hr' };
+const observationKeywords = [
+  { title: '말투는 가볍게, 정보는 정확하게', desc: '브랜드·HR 공통 핵심' },
+  { title: '짧은 콘텐츠 = 저장성',           desc: '나중에 다시 보고 싶은 구조' },
+  { title: '밈은 원본보다 맥락',              desc: '그대로 따라 하기보다 상황화' },
+  { title: '지원자 관점 콘텐츠',              desc: '자랑보다 절차와 분위기' }
+];
+
+/* ============================================================
+   CLAUDE API KEY MANAGEMENT
+   ============================================================ */
+function getClaudeKey()      { return localStorage.getItem(CLAUDE_KEY_STORAGE) || ''; }
+function saveClaudeKey(key)  { localStorage.setItem(CLAUDE_KEY_STORAGE, key.trim()); }
+function hasClaudeKey()      { return Boolean(getClaudeKey()); }
+
+/* ============================================================
+   CLAUDE API CALL
+   ============================================================ */
+async function generateWithClaude(savedItems) {
+  const apiKey = getClaudeKey();
+  if (!apiKey) throw new Error('API 키가 없습니다.');
+
+  const itemsText = savedItems.map((item, i) => {
+    const cat = categoryMap[item.category]?.label || '트렌드';
+    const kw  = (item.keywords || []).join(', ');
+    return `[글감 ${i + 1}] ${item.title}
+카테고리: ${cat}
+요약: ${item.summary}
+키워드: ${kw}
+인사이트: ${item.insight || ''}
+출처: ${item.source || ''}${item.link ? ' (' + item.link + ')' : ''}`;
+  }).join('\n\n');
+
+  const prompt = `다음은 이번 주 수집한 트렌드 글감입니다. 이를 바탕으로 브런치 또는 네이버 블로그에 올릴 에세이형 글을 한 편 작성해주세요.
+
+작성 조건:
+- 분량: 900~1300자 (한국어 기준)
+- 톤: 가볍고 친근하되 인사이트 있게. 독자에게 말을 건네는 느낌
+- 구성: 도입부(훅) → 이번 주 트렌드 관찰 → 내 시각/연결점 → 마무리(한 줄 인사이트)
+- 단순 뉴스 나열 X. 흐름을 읽는 시각을 담아주세요
+- 밈·유행어가 있다면 자연스럽게 녹이기
+- 브런치 감성의 제목 포함 (글 맨 위에)
+- 글 마지막에 핵심 태그 3~5개를 '#태그' 형태로 추가
+
+글감 목록:
+${itemsText}`;
+
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({
+      model: CLAUDE_MODEL,
+      max_tokens: 2048,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+
+  if (!response.ok) {
+    const errData = await response.json().catch(() => ({}));
+    const msg = errData?.error?.message || `HTTP ${response.status}`;
+    throw new Error(msg);
+  }
+
+  const data = await response.json();
+  return data.content[0].text;
+}
+
+/* ============================================================
+   DATA HELPERS
+   ============================================================ */
+function parseArticleDate(value) {
+  if (!value) return null;
+  const d = new Date(value);
+  return isNaN(d.getTime()) ? null : d;
+}
+function getPublishedValue(raw) {
+  return raw.publishedAt || raw.pubDate || raw.published || raw.isoDate || raw.date || raw.createdAt || '';
+}
+function formatShortDate(value) {
+  const d = parseArticleDate(value);
+  if (!d) return '날짜없음';
+  return `${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+}
+function getArticleTime(item) {
+  const t = parseArticleDate(item.publishedAt || item.pubDate || item.isoDate || item.createdAt);
+  if (t) return t.getTime();
+  if (item.date && /^\d{2}\.\d{2}$/.test(String(item.date))) {
+    const f = new Date(`${new Date().getFullYear()}/${String(item.date).replace('.','/')}`);
+    return isNaN(f.getTime()) ? 0 : f.getTime();
+  }
+  return 0;
+}
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let letters         = loadLetters();
+let currentCategory = 'all';
+let currentView     = 'all';
+let searchText      = '';
+
+/* ============================================================
+   DOM REFS
+   ============================================================ */
+const letterList    = document.getElementById('letterList');
+const tabsArea      = document.getElementById('tabsArea');
+const statsArea     = document.getElementById('statsArea');
+const searchInput   = document.getElementById('searchInput');
+const viewSelect    = document.getElementById('viewSelect');
+const sectionHeading = document.getElementById('sectionHeading');
+const sectionSub    = document.getElementById('sectionSub');
+const keywordPanel  = document.getElementById('keywordPanel');
+const toast         = document.getElementById('toast');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalContent  = document.getElementById('modalContent');
+const modalTopLabel = document.getElementById('modalTopLabel');
+const closeModal    = document.getElementById('closeModal');
+const resetBtn      = document.getElementById('resetBtn');
+const refreshBtn    = document.getElementById('refreshBtn');
+const publishBtn    = document.getElementById('publishBtn');
+const publishSideBtn  = document.getElementById('publishSideBtn');
+const publishManualBtn = document.getElementById('publishManualBtn');
+const apiKeyBtn     = document.getElementById('apiKeyBtn');
+
+/* ============================================================
+   BACKEND (Google Apps Script)
+   ============================================================ */
+function isBackendReady() {
+  return Boolean(API_ENDPOINT && API_ENDPOINT.startsWith('https://script.google.com/'));
+}
+
+function jsonpRequest(action, params = {}) {
+  return new Promise((resolve, reject) => {
+    if (!isBackendReady()) { reject(new Error('API_ENDPOINT 미설정')); return; }
+    const cbName = `joopCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const script = document.createElement('script');
+    const query  = new URLSearchParams({ action, callback: cbName, _: Date.now(), ...params });
+    const cleanup = () => { delete window[cbName]; script.remove(); };
+    window[cbName] = (data) => { cleanup(); resolve(data); };
+    script.onerror = () => { cleanup(); reject(new Error('백엔드 요청 실패')); };
+    script.src = `${API_ENDPOINT}${API_ENDPOINT.includes('?') ? '&' : '?'}${query}`;
+    document.body.appendChild(script);
+    setTimeout(() => { if (window[cbName]) { cleanup(); reject(new Error('응답 시간 초과')); } }, 20000);
+  });
+}
+
+function transformBackendItem(raw) {
+  const publishedAt = getPublishedValue(raw);
+  const dateStr     = formatShortDate(publishedAt);
+  const fetchedAt   = raw.fetchedAt || new Date().toISOString();
+  const validCats   = ['meme','content','brand','lifestyle','hr'];
+  const category    = validCats.includes(raw.category) ? raw.category : 'lifestyle';
+  return {
+    id: raw.id || raw.link || `${raw.title}-${publishedAt}`,
+    title: raw.title, category, date: dateStr,
+    publishedAt, fetchedAt,
+    score: raw.score || 75,
+    summary: raw.summary || '원문에서 자세한 내용을 확인하세요.',
+    keywords: Array.isArray(raw.keywords) ? raw.keywords : [],
+    link: raw.link || '', source: raw.source || '',
+    insight: '', saved: raw.saved || false, read: raw.read || false, isNew: true
+  };
+}
+
+function mergeIncomingItems(incomingRaw = []) {
+  const existingMap = new Map(letters.map(item => [item.id, item]));
+  const merged = [];
+  incomingRaw.forEach(raw => {
+    const t = transformBackendItem(raw);
+    const old = existingMap.get(t.id);
+    if (old) { merged.push({ ...t, saved: old.saved, read: old.read, isNew: false, insight: old.insight || '' }); existingMap.delete(t.id); }
+    else { merged.push(t); }
+  });
+  const remaining = Array.from(existingMap.values()).filter(item => item.saved && item.link);
+  letters = [...merged, ...remaining].sort((a, b) => getArticleTime(b) - getArticleTime(a));
+  saveLetters(); renderAll();
+}
+
+async function fetchBackendList(options = {}) {
+  if (!isBackendReady()) return false;
+  try {
+    const data = await jsonpRequest('list');
+    if (!data || !data.ok) throw new Error(data?.message || '목록 가져오기 실패');
+    mergeIncomingItems(data.items || []);
+    if (!options.silent) showToast(`줍줍 ${data.items?.length || 0}개 불러왔어요 ✓`);
+    return true;
+  } catch (e) { console.error(e); if (!options.silent) showToast('백엔드 연결 실패 ㅠ'); return false; }
+}
+
+async function fetchBackendRefresh() {
+  if (!isBackendReady()) { showToast('백엔드가 설정되지 않았어요'); return false; }
+  const orig = refreshBtn.textContent;
+  refreshBtn.textContent = '수집중…'; refreshBtn.disabled = true;
+  try {
+    const data = await jsonpRequest('refresh');
+    if (!data || !data.ok) throw new Error(data?.message || '수집 실패');
+    await fetchBackendList({ silent: true });
+    showToast(`새 글 ${data.added || 0}개 줍줍 완료 🧺`);
+    return true;
+  } catch (e) { console.error(e); showToast('새 글 수집 실패 ㅠ'); return false; }
+  finally { refreshBtn.textContent = orig; refreshBtn.disabled = false; }
+}
+
+/* ============================================================
+   STORAGE
+   ============================================================ */
+function loadLetters() {
+  try { const s = localStorage.getItem(STORAGE_KEY); return s ? (JSON.parse(s) || []) : []; }
+  catch { return []; }
+}
+function saveLetters() { localStorage.setItem(STORAGE_KEY, JSON.stringify(letters)); }
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function renderAll() { renderStats(); renderTabs(); renderKeywords(); renderLetters(); }
+
+function renderStats() {
+  const total  = letters.length;
+  const saved  = letters.filter(i => i.saved).length;
+  const unread = letters.filter(i => !i.read).length;
+  const newest = letters.filter(i => i.isNew).length;
+  statsArea.innerHTML = `
+    <div class="stat"><b>${total}</b><span>전체 줍줍</span></div>
+    <div class="stat"><b>${newest}</b><span>신규 트렌드</span></div>
+    <div class="stat"><b>${saved}</b><span>저장한 글감</span></div>
+    <div class="stat"><b>${unread}</b><span>안 읽은 것</span></div>`;
+}
+
+function renderTabs() {
+  tabsArea.innerHTML = Object.keys(categoryMap).map(key => `
+    <button class="tab ${currentCategory === key ? 'active' : ''}" data-category="${key}">
+      ${categoryMap[key].icon} ${categoryMap[key].label}
+    </button>`).join('');
+  tabsArea.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => { currentCategory = btn.dataset.category; renderAll(); });
+  });
+}
+
+function renderKeywords() {
+  keywordPanel.innerHTML = observationKeywords.map(item => `
+    <div class="mini-item"><b>${item.title}</b><span>${item.desc}</span></div>`).join('');
+}
+
+function getFilteredLetters() {
+  return letters.filter(item => {
+    const matchCat    = currentCategory === 'all' || item.category === currentCategory;
+    const matchView   = currentView === 'all' ||
+      (currentView === 'new'    && item.isNew)  ||
+      (currentView === 'saved'  && item.saved)  ||
+      (currentView === 'unread' && !item.read);
+    const target      = [item.title, item.summary, item.insight, ...(item.keywords||[])].join(' ').toLowerCase();
+    const matchSearch = !searchText || target.includes(searchText.toLowerCase());
+    return matchCat && matchView && matchSearch;
+  });
+}
+
+function renderLetters() {
+  const filtered = getFilteredLetters();
+  sectionHeading.textContent = currentCategory === 'all' ? '이번 주 줍줍' : `${categoryMap[currentCategory].label} 줍줍`;
+  sectionSub.textContent = `${filtered.length}개의 트렌드 카드가 보여요.`;
+  if (!filtered.length) {
+    letterList.innerHTML = `<div class="empty"><div class="icon">🧺</div><h3>아직 불러온 최신 글이 없어요</h3><p>상단의 '↻ 새 글'을 눌러 최신 트렌드를 다시 수집해보세요.</p></div>`;
+    return;
+  }
+  letterList.innerHTML = filtered.map(item => `
+    <article class="letter-card ${item.read ? 'read' : ''}" data-card-id="${item.id}">
+      <div class="card-inner">
+        <div class="card-head">
+          <div style="flex:1;min-width:0;">
+            <div class="meta-line">
+              <span class="badge ${categoryClass[item.category]}">${categoryMap[item.category].icon} ${categoryMap[item.category].label}</span>
+              ${item.isNew ? '<span class="badge new">NEW</span>' : ''}
+              ${item.saved ? '<span class="badge saved">★ 저장</span>' : ''}
+              ${item.read  ? '<span class="badge readed">읽음</span>' : ''}
+              <span class="badge date" title="작성일: ${esc(item.publishedAt||item.date)}">${item.date}</span>
+              ${item.source ? `<span class="badge date">· ${esc(item.source)}</span>` : ''}
+            </div>
+            <h3 class="letter-title">${esc(item.title)}</h3>
+            <p class="letter-summary">${esc(item.summary)}</p>
+          </div>
+          <div class="score">${item.score}<small>SCORE</small></div>
+        </div>
+        <div class="keyword-row">${(item.keywords||[]).map(k=>`<span class="keyword">#${esc(k)}</span>`).join('')}</div>
+        <div class="insight-box">${esc(item.insight || '블로그/브런치 글감으로 확장해보세요.')}</div>
+        <div class="card-actions">
+          <button class="action-btn dark"   data-action="open" data-id="${item.id}">자세히 보기 →</button>
+          <button class="action-btn"        data-action="save" data-id="${item.id}">${item.saved ? '★ 저장 해제' : '☆ 저장'}</button>
+          <button class="action-btn"        data-action="read" data-id="${item.id}">${item.read  ? '안 읽음'    : '읽음 처리'}</button>
+          <button class="action-btn yellow" data-action="copy" data-id="${item.id}">글감 복사</button>
+        </div>
+      </div>
+    </article>`).join('');
+
+  letterList.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); handleCardAction(btn.dataset.action, btn.dataset.id); });
+  });
+}
+
+/* ============================================================
+   CARD ACTIONS
+   ============================================================ */
+function handleCardAction(action, id) {
+  const item = letters.find(l => l.id === id);
+  if (!item) return;
+  if (action === 'open')  { item.read = true; saveLetters(); openModal(item); renderAll(); }
+  if (action === 'save')  { item.saved = !item.saved; saveLetters(); showToast(item.saved ? '저장했어요 ★' : '저장 해제'); renderAll(); }
+  if (action === 'read')  { item.read  = !item.read;  saveLetters(); showToast(item.read  ? '읽음 처리'   : '안 읽음으로'); renderAll(); }
+  if (action === 'copy')  { copyPrompt(item); }
+}
+
+/* ============================================================
+   DETAIL MODAL
+   ============================================================ */
+function openModal(item) {
+  modalTopLabel.textContent = '줍줍 상세';
+  modalContent.innerHTML = `
+    <div class="meta-line">
+      <span class="badge ${categoryClass[item.category]}">${categoryMap[item.category].icon} ${categoryMap[item.category].label}</span>
+      <span class="badge date" title="작성일: ${esc(item.publishedAt||item.date)}">${item.date}</span>
+      <span class="badge new">감도 ${item.score}</span>
+    </div>
+    <h2>${esc(item.title)}</h2>
+    <p class="lead">${esc(item.summary)}</p>
+    <div class="keyword-row">${(item.keywords||[]).map(k=>`<span class="keyword">#${esc(k)}</span>`).join('')}</div>
+    ${item.insight ? `<section class="article-section"><h4>이 트렌드가 중요한 이유</h4><p>${esc(item.insight)}</p></section>` : ''}
+    ${(item.usage?.length) ? `<section class="article-section"><h4>블로그·브런치 활용법</h4><ul>${item.usage.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>`
+      : `<section class="article-section"><h4>줍줍 포인트</h4><p>${esc(item.summary)}</p><p style="margin-top:10px;color:#8a8a8a;">원문에서 더 자세한 흐름을 확인해보세요.</p></section>`}
+    ${item.link ? `<section class="article-section"><h4>원문 보기</h4><p><a href="${esc(item.link)}" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;font-weight:700;">${esc(item.source||'원문 링크')} →</a></p></section>` : ''}`;
+  openModalView();
+}
+
+/* ============================================================
+   API KEY MODAL
+   ============================================================ */
+function openApiKeyModal() {
+  const current = getClaudeKey();
+  modalTopLabel.textContent = 'Claude API 설정';
+  modalContent.innerHTML = `
+    <div class="meta-line">
+      <span class="badge new">설정</span>
+      ${current
+        ? '<span class="key-status set">✓ 키 등록됨</span>'
+        : '<span class="key-status unset">키 미등록</span>'}
+    </div>
+    <h2>Claude API 키 설정</h2>
+    <p class="lead">
+      <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener" style="color:#7c3aed;font-weight:700;text-decoration:underline;">Anthropic Console</a>에서 발급한 API 키를 입력하세요.<br>
+      키는 이 브라우저에만 저장되며 외부 서버로 전송되지 않아요.
+    </p>
+    <section class="article-section">
+      <h4>API 키 입력</h4>
+      <input type="password" id="apiKeyInput" class="key-input"
+        placeholder="sk-ant-api03-..."
+        value="${esc(current)}" autocomplete="off" spellcheck="false" />
+      <p style="margin-top:8px;font-size:12px;color:var(--gray-500);">
+        키는 브라우저 localStorage에만 저장됩니다. 서버로 전송되지 않아요.
+      </p>
+    </section>
+    <div class="modal-actions">
+      <button class="action-btn ai" id="saveApiKeyBtn">저장하기</button>
+      ${current ? '<button class="action-btn" id="clearApiKeyBtn">키 삭제</button>' : ''}
+    </div>`;
+  openModalView();
+
+  document.getElementById('saveApiKeyBtn').addEventListener('click', () => {
+    const key = document.getElementById('apiKeyInput').value.trim();
+    if (!key.startsWith('sk-')) { showToast('올바른 키 형식이 아니에요 (sk-ant-api...)'); return; }
+    saveClaudeKey(key);
+    closeModalView();
+    showToast('API 키 저장 완료 ✓');
+  });
+
+  const clearBtn = document.getElementById('clearApiKeyBtn');
+  if (clearBtn) clearBtn.addEventListener('click', () => {
+    localStorage.removeItem(CLAUDE_KEY_STORAGE);
+    closeModalView();
+    showToast('API 키를 삭제했어요');
+  });
+}
+
+/* ============================================================
+   PUBLISH MODAL (AI 글쓰기)
+   ============================================================ */
+function getSavedItems() {
+  return letters.filter(i => i.saved).sort((a, b) => getArticleTime(b) - getArticleTime(a));
+}
+
+function openPublishAiModal() {
+  const savedItems = getSavedItems();
+  if (!savedItems.length) {
+    currentView = 'saved'; viewSelect.value = 'saved'; syncMobileNav(); renderAll();
+    showToast('저장한 글감이 아직 없어요 ☆'); return;
+  }
+  if (!hasClaudeKey()) {
+    openApiKeyModal();
+    showToast('먼저 API 키를 등록해주세요 🔑');
+    return;
+  }
+
+  const topKw = [...new Set(savedItems.flatMap(i => i.keywords || []))].slice(0, 8);
+  modalTopLabel.textContent = '✨ AI 브런치 글쓰기';
+  modalContent.innerHTML = `
+    <div class="meta-line">
+      <span class="badge saved">★ 저장 글감</span>
+      <span class="badge new">Claude AI</span>
+    </div>
+    <h2>저장 글감 → 브런치 글 자동 작성</h2>
+    <p class="lead">저장한 ${savedItems.length}개 카드를 Claude가 읽고 브런치/블로그용 에세이를 써드려요.</p>
+    <div class="publish-summary">
+      <div class="stat-mini"><b>${savedItems.length}</b><span>저장 글감</span></div>
+      <div class="stat-mini"><b>${topKw.length}</b><span>핵심 키워드</span></div>
+      <div class="stat-mini"><b>${CLAUDE_MODEL.split('-').slice(1,3).join(' ')}</b><span>사용 모델</span></div>
     </div>
 
-    <nav class="tabs" id="tabsArea" aria-label="카테고리"></nav>
-
-    <main class="main-grid">
-      <section>
-        <div class="section-title">
-          <div>
-            <h2 id="sectionHeading">이번 주 줍줍</h2>
-            <p id="sectionSub">요즘 흐름을 카드로 모아봤어요.</p>
-          </div>
-        </div>
-        <div class="letter-list" id="letterList"></div>
-      </section>
-
-      <aside class="side">
-        <section class="panel dark">
-          <div class="panel-header">
-            <h3>이번 주 관찰 키워드</h3>
-            <p>레터로 확장하기 좋은 핵심 인사이트</p>
-          </div>
-          <div class="panel-body">
-            <div class="mini-list" id="keywordPanel"></div>
-          </div>
-        </section>
-
-        <section class="panel">
-          <div class="panel-header">
-            <h3>저장 글감 발행</h3>
-            <p>저장한 카드만 모아 블로그/브런치 초안으로 만들기</p>
-          </div>
-          <div class="panel-body">
-            <button class="action-btn yellow" id="publishSideBtn" style="width:100%; min-height:44px;">저장한 글감으로 레터 만들기</button>
-          </div>
-        </section>
-      </aside>
-    </main>
-  </div>
-
-  <nav class="bottom-nav" aria-label="모바일 메뉴">
-    <button class="active" data-mobile-filter="all">전체</button>
-    <button data-mobile-filter="new">신규</button>
-    <button data-mobile-filter="saved">저장</button>
-    <button data-mobile-filter="unread">안읽음</button>
-  </nav>
-
-  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
-    <article class="modal">
-      <div class="modal-top">
-        <b>줍줍 상세</b>
-        <button class="close-btn" id="closeModal" aria-label="닫기">×</button>
-      </div>
-      <div class="modal-content" id="modalContent"></div>
-    </article>
-  </div>
-
-  <div class="toast" id="toast"></div>
-
-  <script>
-    const STORAGE_KEY = 'trend_joopjoop_letter_v4_latest';
-    const API_ENDPOINT = "https://script.google.com/macros/s/AKfycbyDe18h-TpYJJXOQ69liDt-KKvynPY1muxWch2C015D8yNT0GAUnYj38fexP4uY7QBo/exec";
-
-    const categoryMap = {
-      all: { label: '전체', icon: '🧺' },
-      meme: { label: '밈', icon: '😂' },
-      content: { label: '콘텐츠', icon: '🎬' },
-      brand: { label: '브랜드', icon: '🛍️' },
-      lifestyle: { label: '라이프', icon: '🌿' },
-      hr: { label: 'HR', icon: '💼' }
-    };
-
-    const categoryClass = {
-      meme: 'cat-meme',
-      content: 'cat-content',
-      brand: 'cat-brand',
-      lifestyle: 'cat-lifestyle',
-      hr: 'cat-hr'
-    };
-
-    function parseArticleDate(value) {
-      if (!value) return null;
-      const date = new Date(value);
-      return isNaN(date.getTime()) ? null : date;
-    }
-
-    function getPublishedValue(raw) {
-      return raw.publishedAt || raw.pubDate || raw.published || raw.isoDate || raw.date || raw.createdAt || '';
-    }
-
-    function formatShortDate(value) {
-      const date = parseArticleDate(value);
-      if (!date) return '날짜없음';
-      const mm = String(date.getMonth() + 1).padStart(2, '0');
-      const dd = String(date.getDate()).padStart(2, '0');
-      return `${mm}.${dd}`;
-    }
-
-    function getArticleTime(item) {
-      const primary = parseArticleDate(item.publishedAt || item.pubDate || item.isoDate || item.createdAt);
-      if (primary) return primary.getTime();
-
-      // 기존 localStorage 데이터처럼 MM.DD만 남아 있는 경우를 위한 보정
-      if (item.date && /^\d{2}\.\d{2}$/.test(String(item.date))) {
-        const year = new Date().getFullYear();
-        const fallback = new Date(`${year}/${String(item.date).replace('.', '/')}`);
-        return isNaN(fallback.getTime()) ? 0 : fallback.getTime();
-      }
-      return 0;
-    }
-
-    const defaultLetters = [];
-
-    const observationKeywords = [
-      { title: '말투는 가볍게, 정보는 정확하게', desc: '브랜드·HR 공통 핵심' },
-      { title: '짧은 콘텐츠 = 저장성', desc: '나중에 다시 보고 싶은 구조' },
-      { title: '밈은 원본보다 맥락', desc: '그대로 따라 하기보다 상황화' },
-      { title: '지원자 관점 콘텐츠', desc: '자랑보다 절차와 분위기' }
-    ];
-
-    let letters = loadLetters();
-    let currentCategory = 'all';
-    let currentView = 'all';
-    let searchText = '';
-
-    const letterList = document.getElementById('letterList');
-    const tabsArea = document.getElementById('tabsArea');
-    const statsArea = document.getElementById('statsArea');
-    const searchInput = document.getElementById('searchInput');
-    const viewSelect = document.getElementById('viewSelect');
-    const sectionHeading = document.getElementById('sectionHeading');
-    const sectionSub = document.getElementById('sectionSub');
-    const keywordPanel = document.getElementById('keywordPanel');
-    const toast = document.getElementById('toast');
-    const modalBackdrop = document.getElementById('modalBackdrop');
-    const modalContent = document.getElementById('modalContent');
-    const closeModal = document.getElementById('closeModal');
-    const resetBtn = document.getElementById('resetBtn');
-    const refreshBtn = document.getElementById('refreshBtn');
-    const publishBtn = document.getElementById('publishBtn');
-    const publishSideBtn = document.getElementById('publishSideBtn');
-
-    // ============ 백엔드 연결 (자동수집) ============
-    function isBackendReady() {
-      return Boolean(API_ENDPOINT && API_ENDPOINT.trim().startsWith("https://script.google.com/"));
-    }
-
-    function jsonpRequest(action, params = {}) {
-      return new Promise((resolve, reject) => {
-        if (!isBackendReady()) {
-          reject(new Error("API_ENDPOINT가 설정되지 않았습니다."));
-          return;
-        }
-
-        const callbackName = `joopCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-        const script = document.createElement("script");
-        const query = new URLSearchParams({
-          action,
-          callback: callbackName,
-          _: Date.now().toString(),
-          ...params
-        });
-
-        const cleanup = () => {
-          delete window[callbackName];
-          script.remove();
-        };
-
-        window[callbackName] = (data) => {
-          cleanup();
-          resolve(data);
-        };
-
-        script.onerror = () => {
-          cleanup();
-          reject(new Error("백엔드 요청에 실패했습니다."));
-        };
-
-        const separator = API_ENDPOINT.includes("?") ? "&" : "?";
-        script.src = `${API_ENDPOINT}${separator}${query.toString()}`;
-        document.body.appendChild(script);
-
-        setTimeout(() => {
-          if (window[callbackName]) {
-            cleanup();
-            reject(new Error("백엔드 응답 시간이 초과되었습니다."));
-          }
-        }, 20000);
-      });
-    }
-
-    // 백엔드에서 온 raw 데이터를 줍줍 카드 구조로 변환
-    function transformBackendItem(raw) {
-      // 중요: 정렬 기준은 수집일/업데이트일이 아니라 기사 작성일입니다.
-      const publishedAt = getPublishedValue(raw);
-      const dateStr = formatShortDate(publishedAt);
-      const fetchedAt = raw.fetchedAt || new Date().toISOString();
-
-      // category 보정 (백엔드가 보낸 게 우리 키랑 안 맞으면 lifestyle로)
-      const validCategories = ['meme', 'content', 'brand', 'lifestyle', 'hr'];
-      const category = validCategories.includes(raw.category) ? raw.category : 'lifestyle';
-
-      return {
-        id: raw.id || raw.link || `${raw.title}-${publishedAt}`,
-        title: raw.title,
-        category: category,
-        date: dateStr,                 // 화면 표시용 MM.DD
-        publishedAt: publishedAt,       // 기사 작성일 / 발행일
-        fetchedAt: fetchedAt,           // 앱에서 수집한 날짜
-        score: raw.score || 75,
-        summary: raw.summary || '원문에서 자세한 내용을 확인하세요.',
-        keywords: Array.isArray(raw.keywords) ? raw.keywords : [],
-        link: raw.link || '',
-        source: raw.source || '',
-        insight: '', // 자동수집 글은 인사이트 없음, 모달에서 처리
-        usage: [],
-        saved: raw.saved || false,
-        read: raw.read || false,
-        isNew: true
-      };
-    }
-
-    function mergeIncomingItems(incomingRaw = []) {
-      const existingMap = new Map(letters.map(item => [item.id, item]));
-      const merged = [];
-
-      incomingRaw.forEach(raw => {
-        const transformed = transformBackendItem(raw);
-        const old = existingMap.get(transformed.id);
-
-        if (old) {
-          // 기존 항목: saved/read 상태는 유지
-          merged.push({
-            ...transformed,
-            saved: old.saved,
-            read: old.read,
-            isNew: false,
-            insight: old.insight || ''
-          });
-          existingMap.delete(transformed.id);
-        } else {
-          merged.push(transformed);
-        }
-      });
-
-      // 백엔드에 없는 글은 최신 목록에서 제거합니다.
-      // 단, 사용자가 저장한 실제 원문 링크가 있는 글은 아카이브 용도로 유지합니다.
-      const remaining = Array.from(existingMap.values()).filter(item => item.saved && item.link);
-
-      letters = [...merged, ...remaining]
-        .sort((a, b) => getArticleTime(b) - getArticleTime(a));
-      saveLetters();
-      renderAll();
-    }
-
-    async function fetchBackendList(options = {}) {
-      if (!isBackendReady()) return false;
-
-      try {
-        const data = await jsonpRequest("list");
-        if (!data || !data.ok) throw new Error(data?.message || "목록 가져오기 실패");
-        mergeIncomingItems(data.items || []);
-        if (!options.silent) showToast(`줍줍 ${data.items?.length || 0}개 불러왔어요 ✓`);
-        return true;
-      } catch (error) {
-        console.error(error);
-        if (!options.silent) showToast("백엔드 연결 실패 ㅠ");
-        return false;
-      }
-    }
-
-    async function fetchBackendRefresh() {
-      if (!isBackendReady()) {
-        showToast("백엔드가 설정되지 않았어요");
-        return false;
-      }
-
-      const originalText = refreshBtn.textContent;
-      refreshBtn.textContent = "수집중…";
-      refreshBtn.disabled = true;
-
-      try {
-        const data = await jsonpRequest("refresh");
-        if (!data || !data.ok) throw new Error(data?.message || "수집 실패");
-        await fetchBackendList({ silent: true });
-        showToast(`새 글 ${data.added || 0}개 줍줍 완료 🧺`);
-        return true;
-      } catch (error) {
-        console.error(error);
-        showToast("새 글 수집 실패 ㅠ");
-        return false;
-      } finally {
-        refreshBtn.textContent = originalText;
-        refreshBtn.disabled = false;
-      }
-    }
-
-
-    function loadLetters() {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (!saved) return defaultLetters;
-
-      try {
-        const parsed = JSON.parse(saved);
-        return Array.isArray(parsed) ? parsed : defaultLetters;
-      } catch {
-        return defaultLetters;
-      }
-    }
-
-    function saveLetters() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(letters));
-    }
-
-    function renderAll() {
-      renderStats();
-      renderTabs();
-      renderKeywords();
-      renderLetters();
-    }
-
-    function renderStats() {
-      const total = letters.length;
-      const saved = letters.filter(item => item.saved).length;
-      const unread = letters.filter(item => !item.read).length;
-      const newest = letters.filter(item => item.isNew).length;
-
-      statsArea.innerHTML = `
-        <div class="stat"><b>${total}</b><span>전체 줍줍</span></div>
-        <div class="stat"><b>${newest}</b><span>신규 트렌드</span></div>
-        <div class="stat"><b>${saved}</b><span>저장한 글감</span></div>
-        <div class="stat"><b>${unread}</b><span>안 읽은 것</span></div>
-      `;
-    }
-
-    function renderTabs() {
-      const categories = Object.keys(categoryMap);
-      tabsArea.innerHTML = categories.map(key => `
-        <button class="tab ${currentCategory === key ? 'active' : ''}" data-category="${key}">
-          ${categoryMap[key].icon} ${categoryMap[key].label}
-        </button>
-      `).join('');
-
-      tabsArea.querySelectorAll('.tab').forEach(button => {
-        button.addEventListener('click', () => {
-          currentCategory = button.dataset.category;
-          renderAll();
-        });
-      });
-    }
-
-    function renderKeywords() {
-      keywordPanel.innerHTML = observationKeywords.map(item => `
-        <div class="mini-item">
-          <b>${item.title}</b>
-          <span>${item.desc}</span>
-        </div>
-      `).join('');
-    }
-
-    function getFilteredLetters() {
-      return letters.filter(item => {
-        const matchCategory = currentCategory === 'all' || item.category === currentCategory;
-        const matchView =
-          currentView === 'all' ||
-          (currentView === 'new' && item.isNew) ||
-          (currentView === 'saved' && item.saved) ||
-          (currentView === 'unread' && !item.read);
-        const target = [item.title, item.summary, item.insight, ...(item.keywords || [])].join(' ').toLowerCase();
-        const matchSearch = !searchText || target.includes(searchText.toLowerCase());
-        return matchCategory && matchView && matchSearch;
-      });
-    }
-
-    function renderLetters() {
-      const filtered = getFilteredLetters();
-      const categoryLabel = categoryMap[currentCategory].label;
-      sectionHeading.textContent = currentCategory === 'all' ? '이번 주 줍줍' : `${categoryLabel} 줍줍`;
-      sectionSub.textContent = `${filtered.length}개의 트렌드 카드가 보여요.`;
-
-      if (filtered.length === 0) {
-        letterList.innerHTML = `
-          <div class="empty">
-            <div class="icon">🧺</div>
-            <h3>아직 불러온 최신 글이 없어요</h3>
-            <p>상단의 ‘↻ 새 글’을 눌러 최신 트렌드를 다시 수집해보세요.</p>
-          </div>
-        `;
-        return;
-      }
-
-      letterList.innerHTML = filtered.map(item => `
-        <article class="letter-card ${item.read ? 'read' : ''}" data-card-id="${item.id}">
-          <div class="card-inner">
-            <div class="card-head">
-              <div style="flex:1; min-width:0;">
-                <div class="meta-line">
-                  <span class="badge ${categoryClass[item.category]}">${categoryMap[item.category].icon} ${categoryMap[item.category].label}</span>
-                  ${item.isNew ? '<span class="badge new">NEW</span>' : ''}
-                  ${item.saved ? '<span class="badge saved">★ 저장</span>' : ''}
-                  ${item.read ? '<span class="badge readed">읽음</span>' : ''}
-                  <span class="badge date" title="작성일: ${escapeHtml(item.publishedAt || item.date)}">${item.date}</span>
-                  ${item.source ? `<span class="badge date">· ${escapeHtml(item.source)}</span>` : ''}
-                </div>
-                <h3 class="letter-title">${escapeHtml(item.title)}</h3>
-                <p class="letter-summary">${escapeHtml(item.summary)}</p>
-              </div>
-              <div class="score">${item.score}<small>SCORE</small></div>
-            </div>
-
-            <div class="keyword-row">
-              ${(item.keywords || []).map(keyword => `<span class="keyword">#${escapeHtml(keyword)}</span>`).join('')}
-            </div>
-
-            <div class="insight-box">${escapeHtml(item.insight || '블로그/브런치 글감으로 확장해보세요.')}</div>
-
-            <div class="card-actions">
-              <button class="action-btn dark" data-action="open" data-id="${item.id}">자세히 보기 →</button>
-              <button class="action-btn" data-action="save" data-id="${item.id}">${item.saved ? '★ 저장 해제' : '☆ 저장'}</button>
-              <button class="action-btn" data-action="read" data-id="${item.id}">${item.read ? '안 읽음' : '읽음 처리'}</button>
-              <button class="action-btn yellow" data-action="copy" data-id="${item.id}">글감 복사</button>
-            </div>
-          </div>
-        </article>
-      `).join('');
-
-      letterList.querySelectorAll('[data-action]').forEach(button => {
-        button.addEventListener('click', (event) => {
-          event.stopPropagation();
-          handleCardAction(button.dataset.action, button.dataset.id);
-        });
-      });
-    }
-
-    function handleCardAction(action, id) {
-      const item = letters.find(letter => letter.id === id);
-      if (!item) return;
-
-      if (action === 'open') {
-        item.read = true;
-        saveLetters();
-        openModal(item);
-        renderAll();
-      }
-
-      if (action === 'save') {
-        item.saved = !item.saved;
-        saveLetters();
-        showToast(item.saved ? '저장했어요 ★' : '저장을 해제했어요');
-        renderAll();
-      }
-
-      if (action === 'read') {
-        item.read = !item.read;
-        saveLetters();
-        showToast(item.read ? '읽음 처리했어요' : '안 읽음으로 바꿨어요');
-        renderAll();
-      }
-
-      if (action === 'copy') {
-        copyPrompt(item);
-      }
-    }
-
-    function openModal(item) {
-      modalContent.innerHTML = `
-        <div class="meta-line">
-          <span class="badge ${categoryClass[item.category]}">${categoryMap[item.category].icon} ${categoryMap[item.category].label}</span>
-          <span class="badge date" title="작성일: ${escapeHtml(item.publishedAt || item.date)}">${item.date}</span>
-          <span class="badge new">감도 ${item.score}</span>
-        </div>
-        <h2>${escapeHtml(item.title)}</h2>
-        <p class="lead">${escapeHtml(item.summary)}</p>
-
-        <div class="keyword-row">
-          ${(item.keywords || []).map(keyword => `<span class="keyword">#${escapeHtml(keyword)}</span>`).join('')}
-        </div>
-
-        ${item.insight ? `
-        <section class="article-section">
-          <h4>이 트렌드가 중요한 이유</h4>
-          <p>${escapeHtml(item.insight)}</p>
-        </section>
-        ` : ''}
-
-        ${(item.usage && item.usage.length) ? `
-        <section class="article-section">
-          <h4>블로그·브런치 활용법</h4>
-          <ul>
-            ${item.usage.map(text => `<li>${escapeHtml(text)}</li>`).join('')}
-          </ul>
-        </section>
-        ` : `
-        <section class="article-section">
-          <h4>줍줍 포인트</h4>
-          <p>${escapeHtml(item.summary)}</p>
-          <p style="margin-top:10px; color:#8a8a8a;">원문에서 더 자세한 흐름을 확인해보세요.</p>
-        </section>
-        `}
-
-        ${item.link ? `
-        <section class="article-section">
-          <h4>원문 보기</h4>
-          <p><a href="${escapeHtml(item.link)}" target="_blank" rel="noopener" style="color:#1a1a1a; text-decoration:underline; font-weight:700;">${escapeHtml(item.source || '원문 링크')} →</a></p>
-        </section>
-        ` : ''}
-      `;
-      modalBackdrop.classList.add('show');
-    }
-
-    function getSavedLettersForPublish() {
-      return letters
-        .filter(item => item.saved)
-        .sort((a, b) => getArticleTime(b) - getArticleTime(a));
-    }
-
-    function buildPublishDraft(savedItems) {
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
-      const dateLabel = `${yyyy}.${mm}.${dd}`;
-      const topKeywords = [...new Set(savedItems.flatMap(item => item.keywords || []))].slice(0, 8);
-
-      const lines = [];
-      lines.push(`트렌드 줍줍레터 #${dateLabel}`);
-      lines.push('');
-      lines.push('요즘 보이는 밈, 콘텐츠, 브랜드 말투, 라이프스타일 흐름 중에서 다시 볼 만한 글감만 모았습니다.');
-      lines.push('');
-      lines.push('오늘의 줍줍 요약');
-      lines.push(`- 저장한 글감: ${savedItems.length}개`);
-      if (topKeywords.length) lines.push(`- 핵심 키워드: ${topKeywords.map(keyword => `#${keyword}`).join(' ')}`);
-      lines.push('');
-      lines.push('---');
-      lines.push('');
-
-      savedItems.forEach((item, index) => {
-        const category = categoryMap[item.category]?.label || '트렌드';
-        const keywords = (item.keywords || []).map(keyword => `#${keyword}`).join(' ');
-        lines.push(`${index + 1}. ${item.title}`);
-        lines.push(`분류: ${category}${item.source ? ` · 출처: ${item.source}` : ''}`);
-        if (keywords) lines.push(`키워드: ${keywords}`);
-        lines.push('');
-        lines.push(`요약: ${item.summary || '원문에서 자세한 내용을 확인해 주세요.'}`);
-        if (item.insight) {
-          lines.push(`줍줍 포인트: ${item.insight}`);
-        } else {
-          lines.push('줍줍 포인트: 이 흐름이 왜 지금 반응을 얻는지, 내 콘텐츠나 업무에 어떻게 연결할 수 있을지 확인해볼 만합니다.');
-        }
-        if (item.link) lines.push(`원문: ${item.link}`);
-        lines.push('');
-        lines.push('---');
-        lines.push('');
-      });
-
-      lines.push('발행 전 체크');
-      lines.push('- 원문 제목과 링크가 정확한지 확인하기');
-      lines.push('- 이미지나 짤은 무단 사용하지 않고 직접 만든 카드/텍스트로 대체하기');
-      lines.push('- 내 관점 한 문단을 추가해서 단순 링크 모음처럼 보이지 않게 정리하기');
-      return lines.join('\n');
-    }
-
-    function openPublishModal() {
-      const savedItems = getSavedLettersForPublish();
-      if (!savedItems.length) {
-        currentView = 'saved';
-        viewSelect.value = 'saved';
-        syncMobileNav();
-        renderAll();
-        showToast('저장한 글감이 아직 없어요 ☆');
-        return;
-      }
-
-      const draft = buildPublishDraft(savedItems);
-      const topKeywords = [...new Set(savedItems.flatMap(item => item.keywords || []))].slice(0, 8);
-      modalContent.innerHTML = `
-        <div class="meta-line">
-          <span class="badge saved">★ 저장 글감</span>
-          <span class="badge new">발행 초안</span>
-        </div>
-        <h2>저장한 글감으로 레터 만들기</h2>
-        <p class="lead">저장한 카드만 모아서 블로그/브런치에 바로 다듬어 올릴 수 있는 초안으로 묶었어요.</p>
-
-        <div class="publish-summary">
-          <div class="stat-mini"><b>${savedItems.length}</b><span>저장한 글감</span></div>
-          <div class="stat-mini"><b>${topKeywords.length}</b><span>핵심 키워드</span></div>
-          <div class="stat-mini"><b>${savedItems.filter(item => item.link).length}</b><span>원문 링크</span></div>
-        </div>
-
-        <textarea class="draft-box" id="publishDraftBox">${escapeHtml(draft)}</textarea>
-        <div class="modal-actions">
-          <button class="action-btn dark" id="copyPublishDraftBtn">초안 복사</button>
-          <button class="action-btn yellow" id="downloadPublishDraftBtn">TXT 저장</button>
-          <button class="action-btn" id="showSavedOnlyBtn">저장 글감만 보기</button>
-        </div>
-      `;
-      modalBackdrop.classList.add('show');
-
-      document.getElementById('copyPublishDraftBtn').addEventListener('click', () => {
-        const text = document.getElementById('publishDraftBox').value;
-        navigator.clipboard.writeText(text)
-          .then(() => showToast('레터 초안을 복사했어요 ✓'))
-          .catch(() => showToast('복사가 막혔어요. 직접 선택해서 복사해주세요.'));
-      });
-
-      document.getElementById('downloadPublishDraftBtn').addEventListener('click', () => {
-        const text = document.getElementById('publishDraftBox').value;
-        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'trend-joopjoop-letter-draft.txt';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-        showToast('TXT 파일로 저장했어요');
-      });
-
-      document.getElementById('showSavedOnlyBtn').addEventListener('click', () => {
+    <div class="ai-loading" id="aiLoading">
+      <div class="spinner"></div>
+      Claude가 글을 쓰고 있어요… (보통 15~30초)
+    </div>
+
+    <textarea class="ai-result-box" id="aiResultBox" placeholder="버튼을 눌러 AI 글을 생성해보세요 ✨" readonly></textarea>
+
+    <div class="modal-actions">
+      <button class="action-btn ai" id="aiGenerateBtn">✨ 글 생성하기</button>
+      <button class="action-btn dark" id="aiCopyBtn" disabled>복사하기</button>
+      <button class="action-btn yellow" id="aiDownloadBtn" disabled>TXT 저장</button>
+      <button class="action-btn" id="showSavedOnlyBtn">저장 글감만 보기</button>
+    </div>`;
+  openModalView();
+
+  const generateBtn  = document.getElementById('aiGenerateBtn');
+  const copyBtn      = document.getElementById('aiCopyBtn');
+  const downloadBtn  = document.getElementById('aiDownloadBtn');
+  const resultBox    = document.getElementById('aiResultBox');
+  const loadingEl    = document.getElementById('aiLoading');
+
+  generateBtn.addEventListener('click', async () => {
+    generateBtn.disabled = true;
+    generateBtn.textContent = '생성 중…';
+    loadingEl.classList.add('show');
+    resultBox.value = '';
+    copyBtn.disabled = true;
+    downloadBtn.disabled = true;
+
+    try {
+      const text = await generateWithClaude(savedItems);
+      resultBox.removeAttribute('readonly');
+      resultBox.value = text;
+      copyBtn.disabled = false;
+      downloadBtn.disabled = false;
+      showToast('브런치 글 생성 완료 ✓');
+    } catch (e) {
+      console.error(e);
+      if (e.message.includes('API 키')) {
         closeModalView();
-        currentView = 'saved';
-        viewSelect.value = 'saved';
-        syncMobileNav();
-        renderAll();
-      });
-    }
-
-    function closeModalView() {
-      modalBackdrop.classList.remove('show');
-    }
-
-    function copyPrompt(item) {
-      const text = `트렌드 줍줍레터 글감
-
-제목: ${item.title}
-카테고리: ${categoryMap[item.category].label}
-한 줄 요약: ${item.summary}
-키워드: ${(item.keywords || []).join(', ')}
-활용 포인트: ${item.insight}
-
-이 내용을 바탕으로 네이버 블로그/브런치용 글을 작성하기.`;
-
-      navigator.clipboard.writeText(text)
-        .then(() => showToast('글감을 복사했어요 ✓'))
-        .catch(() => showToast('복사가 막혔어요. 직접 선택해서 복사해주세요.'));
-    }
-
-    function showToast(message) {
-      toast.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 1600);
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-    }
-
-    searchInput.addEventListener('input', event => {
-      searchText = event.target.value.trim();
-      renderLetters();
-    });
-
-    viewSelect.addEventListener('change', event => {
-      currentView = event.target.value;
-      syncMobileNav();
-      renderAll();
-    });
-
-    document.querySelectorAll('[data-mobile-filter]').forEach(button => {
-      button.addEventListener('click', () => {
-        currentView = button.dataset.mobileFilter;
-        viewSelect.value = currentView;
-        syncMobileNav();
-        renderAll();
-      });
-    });
-
-    function syncMobileNav() {
-      document.querySelectorAll('[data-mobile-filter]').forEach(button => {
-        button.classList.toggle('active', button.dataset.mobileFilter === currentView);
-      });
-    }
-
-    closeModal.addEventListener('click', closeModalView);
-    modalBackdrop.addEventListener('click', event => {
-      if (event.target === modalBackdrop) closeModalView();
-    });
-
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') closeModalView();
-    });
-
-    resetBtn.addEventListener('click', () => {
-      const ok = confirm('저장한 내용과 추가한 글감을 초기 상태로 되돌릴까요?');
-      if (!ok) return;
-      localStorage.removeItem(STORAGE_KEY);
-      letters = [];
-      currentCategory = 'all';
-      currentView = 'all';
-      searchText = '';
-      searchInput.value = '';
-      viewSelect.value = 'all';
-      syncMobileNav();
-      showToast('초기화했어요');
-      renderAll();
-      fetchBackendList({ silent: false });
-    });
-
-    let startY = 0;
-    let isPulling = false;
-
-    window.addEventListener('touchstart', event => {
-      if (window.scrollY === 0) {
-        startY = event.touches[0].clientY;
-        isPulling = true;
+        setTimeout(() => { openApiKeyModal(); showToast('API 키를 먼저 등록해주세요 🔑'); }, 200);
+      } else {
+        showToast(`오류: ${e.message}`);
       }
-    }, { passive: true });
-
-    window.addEventListener('touchend', event => {
-      if (!isPulling) return;
-      const endY = event.changedTouches[0].clientY;
-      if (endY - startY > 80) {
-        fetchBackendRefresh();
-      }
-      isPulling = false;
-    }, { passive: true });
-
-    refreshBtn.addEventListener('click', fetchBackendRefresh);
-    publishBtn.addEventListener('click', openPublishModal);
-    publishSideBtn.addEventListener('click', openPublishModal);
-
-    renderAll();
-
-    // 페이지 로드 시 백엔드에서 자동 데이터 가져오기
-    if (isBackendReady()) {
-      fetchBackendList({ silent: false });
+    } finally {
+      generateBtn.disabled = false;
+      generateBtn.textContent = '↺ 다시 생성';
+      loadingEl.classList.remove('show');
     }
-  </script>
+  });
+
+  copyBtn.addEventListener('click', () => {
+    const text = resultBox.value;
+    if (!text) return;
+    navigator.clipboard.writeText(text)
+      .then(() => showToast('복사했어요 ✓'))
+      .catch(() => showToast('복사 실패. 직접 선택 후 복사해주세요.'));
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    const text = resultBox.value;
+    if (!text) return;
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = 'brunch-draft.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+    showToast('TXT 파일 저장 완료');
+  });
+
+  document.getElementById('showSavedOnlyBtn').addEventListener('click', () => {
+    closeModalView();
+    currentView = 'saved'; viewSelect.value = 'saved'; syncMobileNav(); renderAll();
+  });
+}
+
+/* ============================================================
+   PUBLISH MODAL (수동 초안)
+   ============================================================ */
+function buildManualDraft(savedItems) {
+  const today   = new Date();
+  const dateLabel = `${today.getFullYear()}.${String(today.getMonth()+1).padStart(2,'0')}.${String(today.getDate()).padStart(2,'0')}`;
+  const topKw   = [...new Set(savedItems.flatMap(i => i.keywords||[]))].slice(0, 8);
+  const lines   = [`트렌드 줍줍레터 #${dateLabel}`, '', '요즘 보이는 밈, 콘텐츠, 브랜드 말투, 라이프스타일 흐름 중에서 다시 볼 만한 글감만 모았습니다.', '',
+    '오늘의 줍줍 요약', `- 저장한 글감: ${savedItems.length}개`];
+  if (topKw.length) lines.push(`- 핵심 키워드: ${topKw.map(k=>'#'+k).join(' ')}`);
+  lines.push('', '---', '');
+  savedItems.forEach((item, i) => {
+    const cat = categoryMap[item.category]?.label || '트렌드';
+    const kw  = (item.keywords||[]).map(k=>'#'+k).join(' ');
+    lines.push(`${i+1}. ${item.title}`, `분류: ${cat}${item.source ? ' · 출처: '+item.source : ''}`,
+      kw ? `키워드: ${kw}` : '', '', `요약: ${item.summary}`,
+      `줍줍 포인트: ${item.insight || '이 흐름이 왜 지금 반응을 얻는지, 내 콘텐츠나 업무에 어떻게 연결할 수 있을지 확인해볼 만합니다.'}`,
+      item.link ? `원문: ${item.link}` : '', '', '---', '');
+  });
+  lines.push('발행 전 체크', '- 원문 제목과 링크가 정확한지 확인하기', '- 이미지/짤은 무단 사용 X. 직접 만든 카드로 대체하기', '- 내 관점 한 문단을 추가해서 단순 링크 모음처럼 보이지 않게 정리하기');
+  return lines.join('\n');
+}
+
+function openPublishManualModal() {
+  const savedItems = getSavedItems();
+  if (!savedItems.length) {
+    currentView = 'saved'; viewSelect.value = 'saved'; syncMobileNav(); renderAll();
+    showToast('저장한 글감이 아직 없어요 ☆'); return;
+  }
+  const draft = buildManualDraft(savedItems);
+  const topKw = [...new Set(savedItems.flatMap(i => i.keywords||[]))].slice(0, 8);
+  modalTopLabel.textContent = '레터 발행';
+  modalContent.innerHTML = `
+    <div class="meta-line"><span class="badge saved">★ 저장 글감</span><span class="badge new">수동 초안</span></div>
+    <h2>저장한 글감으로 레터 만들기</h2>
+    <p class="lead">저장한 카드를 구조화된 초안으로 묶었어요. AI 글쓰기를 원하시면 ✨ 버튼을 이용하세요.</p>
+    <div class="publish-summary">
+      <div class="stat-mini"><b>${savedItems.length}</b><span>저장한 글감</span></div>
+      <div class="stat-mini"><b>${topKw.length}</b><span>핵심 키워드</span></div>
+      <div class="stat-mini"><b>${savedItems.filter(i=>i.link).length}</b><span>원문 링크</span></div>
+    </div>
+    <textarea class="draft-box" id="publishDraftBox">${esc(draft)}</textarea>
+    <div class="modal-actions">
+      <button class="action-btn dark"   id="copyDraftBtn">초안 복사</button>
+      <button class="action-btn yellow" id="downloadDraftBtn">TXT 저장</button>
+      <button class="action-btn ai"     id="switchToAiBtn">✨ AI로 바꾸기</button>
+    </div>`;
+  openModalView();
+
+  document.getElementById('copyDraftBtn').addEventListener('click', () => {
+    const text = document.getElementById('publishDraftBox').value;
+    navigator.clipboard.writeText(text).then(() => showToast('복사했어요 ✓')).catch(() => showToast('직접 선택 후 복사해주세요.'));
+  });
+  document.getElementById('downloadDraftBtn').addEventListener('click', () => {
+    const text = document.getElementById('publishDraftBox').value;
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url  = URL.createObjectURL(blob); const a = document.createElement('a');
+    a.href = url; a.download = 'joopjoop-draft.txt';
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    showToast('TXT 파일 저장 완료');
+  });
+  document.getElementById('switchToAiBtn').addEventListener('click', () => { closeModalView(); setTimeout(openPublishAiModal, 200); });
+}
+
+/* ============================================================
+   UTILS
+   ============================================================ */
+function openModalView()  { modalBackdrop.classList.add('show'); }
+function closeModalView() { modalBackdrop.classList.remove('show'); }
+
+function copyPrompt(item) {
+  const text = `트렌드 줍줍레터 글감\n제목: ${item.title}\n카테고리: ${categoryMap[item.category].label}\n한 줄 요약: ${item.summary}\n키워드: ${(item.keywords||[]).join(', ')}\n활용 포인트: ${item.insight}\n이 내용을 바탕으로 네이버 블로그/브런치용 글을 작성하기.`;
+  navigator.clipboard.writeText(text).then(() => showToast('글감 복사 ✓')).catch(() => showToast('복사 실패. 직접 선택 후 복사해주세요.'));
+}
+
+function showToast(msg) {
+  toast.textContent = msg; toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1800);
+}
+
+function esc(v) {
+  return String(v||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#039;");
+}
+
+function syncMobileNav() {
+  document.querySelectorAll('[data-mobile-filter]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mobileFilter === currentView);
+  });
+}
+
+/* ============================================================
+   EVENT LISTENERS
+   ============================================================ */
+searchInput.addEventListener('input', e => { searchText = e.target.value.trim(); renderLetters(); });
+viewSelect.addEventListener('change', e => { currentView = e.target.value; syncMobileNav(); renderAll(); });
+document.querySelectorAll('[data-mobile-filter]').forEach(btn => {
+  btn.addEventListener('click', () => { currentView = btn.dataset.mobileFilter; viewSelect.value = currentView; syncMobileNav(); renderAll(); });
+});
+
+closeModal.addEventListener('click', closeModalView);
+modalBackdrop.addEventListener('click', e => { if (e.target === modalBackdrop) closeModalView(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalView(); });
+
+apiKeyBtn.addEventListener('click', openApiKeyModal);
+publishBtn.addEventListener('click', openPublishAiModal);
+publishSideBtn.addEventListener('click', openPublishAiModal);
+publishManualBtn.addEventListener('click', openPublishManualModal);
+
+resetBtn.addEventListener('click', () => {
+  if (!confirm('저장 내용과 글감을 초기 상태로 되돌릴까요?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  letters = []; currentCategory = 'all'; currentView = 'all';
+  searchText = ''; searchInput.value = ''; viewSelect.value = 'all'; syncMobileNav();
+  showToast('초기화했어요'); renderAll();
+  fetchBackendList({ silent: false });
+});
+
+refreshBtn.addEventListener('click', fetchBackendRefresh);
+
+let startY = 0, isPulling = false;
+window.addEventListener('touchstart', e => { if (window.scrollY === 0) { startY = e.touches[0].clientY; isPulling = true; } }, { passive: true });
+window.addEventListener('touchend',   e => {
+  if (!isPulling) return;
+  if (e.changedTouches[0].clientY - startY > 80) fetchBackendRefresh();
+  isPulling = false;
+}, { passive: true });
+
+/* ============================================================
+   INIT
+   ============================================================ */
+renderAll();
+if (isBackendReady()) fetchBackendList({ silent: false });
+</script>
 </body>
 </html>
